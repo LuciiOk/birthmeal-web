@@ -1,25 +1,20 @@
 import React from "react";
 import "./NavBar.scss";
-import logo from "../../assets/logo.png"
+import { Link } from "react-router-dom";
 
 const NavBar = () => {
   return (
     <nav className="navbar">
       <ul className="navbar__list">
         <li className="navbar__item">
-          <a href="/" className="navbar__link">
-            Home
-          </a>
+          <Link to="#about" className="navbar__link" >
+            Sobre nosotros
+          </Link>
         </li>
         <li className="navbar__item">
-          <a href="#about-us" className="navbar__link">
-            About
-          </a>
-        </li>
-        <li className="navbar__item">
-          <a href="/companies" className="navbar__link">
-            Companies
-          </a>
+          <Link to="#contact" className="navbar__link" >
+            Contacto
+          </Link>
         </li>
       </ul>
     </nav>
