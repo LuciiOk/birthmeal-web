@@ -2,6 +2,7 @@ import React from "react";
 import NavBar from "../../components/Navbar/NavBar";
 import "./Home.scss";
 import logo from "../../assets/logo.png";
+import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
   return (
@@ -28,6 +29,7 @@ const Home = () => {
           <img src={logo} />
         </div>
       </main>
+      <Footer></Footer>
     </>
   );
 };
