@@ -7,10 +7,14 @@ const AuthProvider = ({ children }) => {
   const [isAuth, setIsAuth] = React.useState(false);
   const [user, setUser] = React.useState(null);
 
-  const login = (user) => {
-    setIsAuth(true);
+  const login = (email, password) => {
+    const user = {
+      email,
+      password,
+    };
     setUser(user);
-    setToken(user.token);
+    setToken("token");
+    setIsAuth(true);
   };
 
   const logout = () => {
