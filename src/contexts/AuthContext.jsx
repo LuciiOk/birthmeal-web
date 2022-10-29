@@ -1,5 +1,6 @@
 import React, { createContext } from "react";
 import AxiosInstance from "../utils/AxiosIntance";
+import toast from 'react-hot-toast';
 
 export const AuthContext = createContext();
 
@@ -14,15 +15,16 @@ const AuthProvider = ({ children }) => {
         email,
         password,
       };
-      const response = await AxiosInstance.post("auth/admin/login", userData);
-      const { token, user } = response.data;
-      setToken(token);
+      const response = await AxiosInstance.post("auth/admindsf/login", userData);
+      const { access_token, user } = response.data;
+      setToken(access_token);
       setUser(user);
       setIsAuth(true);
       localStorage.setItem("token", token);
       localStorage.setItem("user", JSON.stringify(user));
     } catch (error) {
       console.log(error);
+      toast.error(error.response.data.message);
     }
   };
 
