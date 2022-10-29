@@ -9,7 +9,7 @@ const Layout = () => {
       <AdminNavbar />
       <div className="layout">
         <Sidebar />
-        <div className="content">
+        <div className="layout__content">
           <Outlet />
         </div>
       </div>
