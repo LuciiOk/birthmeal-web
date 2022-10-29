@@ -6,6 +6,7 @@ import Home from "../pages/Home/Home";
 import NotFound from "../pages/NotFound/NotFound";
 import Companies from "../pages/Companies/Company";
 import Layout from "../Layout/Layout";
+import Categories from "../pages/Categories/Categories";
 
 const RoutesC = () => {
   const { isAuth } = useContext(AuthContext);
@@ -18,8 +19,9 @@ const RoutesC = () => {
         {isAuth && <Route path="/login" element={<Navigate to="/admin" />} />}
         <Route path="*" element={<NotFound />} />
         {isAuth && (
-          <Route path="admin" element={<Layout />}>
+          <Route path="admin/" element={<Layout />}>
             <Route path="companies" element={<Companies />} />
+            <Route path="categories" element={<Categories />} />
             <Route path="" element={<Navigate to="companies" />} />
             <Route path="*" element={<NotFound />} />
           </Route>
