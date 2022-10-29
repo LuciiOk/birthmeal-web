@@ -1,27 +1,37 @@
 import React, { useContext, useState } from "react";
 import "./Login.scss";
 import { AuthContext } from "../../contexts/AuthContext";
+import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const navigate = useNavigate();
 
   const { login } = useContext(AuthContext);
 
-  const handleLogin = (event) => {
+  const handleLogin = async (event) => {
     event.preventDefault();
-    setEmailError("");
-    setPasswordError("");
-    if (email === "") {
-      setEmailError("El email es requerido");
-    }
-    if (password === "") {
-      setPasswordError("La contraseña es requerida");
-    }
-    if (email !== "" && password !== "") {
-      login(email, password);
+    try {
+      setEmailError("");
+      setPasswordError("");
+      if (email === "") {
+        setEmailError("El email es requerido");
+      }
+      if (password === "") {
+        setPasswordError("La contraseña es requerida");
+      }
+      if (email !== "" && password !== "") {
+        await login(email, password);
+        navigate("/admin");
+        toast.success("Has iniciado sesión correctamente");
+      }
+    } catch(e) {
+      console.log(e);
+      toast.error("Error al iniciar sesión");
     }
   };
 
