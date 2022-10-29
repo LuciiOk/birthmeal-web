@@ -5,7 +5,7 @@ const Categories = () => {
   return (
     <div className="container">
       <div className="categories__header">
-        <h3 className="categories__title">Categories</h3>
+        <h3 className="categories__title">Categorias</h3>
         <button className="categories__add">Agregar</button>
       </div>
       <div className="categories__body">
