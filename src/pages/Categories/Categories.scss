@@ -11,7 +11,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: #008360;
+    background-color: #009879;
     cursor: pointer;
     border: none;
     outline: none;
@@ -21,7 +21,7 @@
     padding: 10px 20px;
     border-radius: 5px;
     &:hover {
-      background-color: #006b4f;
+      background-color: #007a5f;
     }
   }
 }
@@ -57,7 +57,7 @@
     tbody tr {
       border-bottom: 1px solid #dddddd;
 
-      td {
+      td{
         text-align: center;
       }
       &:nth-of-type(even) {
@@ -70,7 +70,7 @@
     }
 
     .categories__edit {
-      background-color: #008360;
+      background-color: #009879;
       cursor: pointer;
       border: none;
       outline: none;
@@ -81,7 +81,7 @@
       border-radius: 5px;
       margin-right: 10px;
       &:hover {
-        background-color: #006b4f;
+        background-color: #008360;
       }
     }
 
