@@ -27,6 +27,16 @@ const AuthProvider = ({ children }) => {
     setUser(null);
   };
 
+  React.useEffect(() => {
+    const token = localStorage.getItem("token");
+    const user = localStorage.getItem("user");
+    if (token && user) {
+      setToken(token);
+      setUser(JSON.parse(user));
+      setIsAuth(true);
+    }
+  }, []);
+
   return (
     <AuthContext.Provider
       value={{

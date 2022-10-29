@@ -1,6 +1,6 @@
 import React, { useContext } from "react";
 import { AuthContext } from "../contexts/AuthContext";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "../pages/Login/Login";
 import Home from "../pages/Home/Home";
 import NotFound from "../pages/NotFound/NotFound";
@@ -14,12 +14,16 @@ const RoutesC = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="login" element={<Login />} />
+        {!isAuth && <Route path="/login" element={<Login />} />}
+        {isAuth && <Route path="/login" element={<Navigate to="/admin" />} />}
         <Route path="*" element={<NotFound />} />
-        <Route path="admin" element={<Layout />} >
-          <Route path="companies" element={<Companies />} />
-          <Route path="*" element={<NotFound />} />
-        </Route>
+        {isAuth && (
+          <Route path="admin" element={<Layout />}>
+            <Route path="companies" element={<Companies />} />
+            <Route path="" element={<Navigate to="companies" />} />
+            <Route path="*" element={<NotFound />} />
+          </Route>
+        )}
       </Routes>
     </BrowserRouter>
   );
