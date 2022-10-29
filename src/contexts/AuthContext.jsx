@@ -14,7 +14,7 @@ const AuthProvider = ({ children }) => {
         email,
         password,
       };
-      const response = await AxiosInstance.post("auth/login", userData);
+      const response = await AxiosInstance.post("auth/admin/login", userData);
       const { token, user } = response.data;
       setToken(token);
       setUser(user);
