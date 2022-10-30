@@ -24,6 +24,7 @@ const Categories = () => {
             <tr>
               <th>Nombre</th>
               <th>Icono</th>
+              <th>Color</th>
               <th>Opciones</th>
             </tr>
           </thead>
@@ -31,6 +32,12 @@ const Categories = () => {
             <tr>
               <td>Dom</td>
               <td>6000</td>
+              <td>
+                <button
+                  className="color-preview"
+                  style={{ backgroundColor: "#000000" }}
+                ></button>
+              </td>
               <td>
                 <button className="categories__edit">Editar</button>
                 <button className="categories__delete">Eliminar</button>
@@ -40,6 +47,12 @@ const Categories = () => {
               <td>Melissa</td>
               <td>5150</td>
               <td>
+                <button
+                  className="color-preview"
+                  style={{ backgroundColor: "#ecf" }}
+                ></button>
+              </td>
+              <td>
                 <button className="categories__edit">Editar</button>
                 <button className="categories__delete">Eliminar</button>
               </td>
@@ -47,10 +60,7 @@ const Categories = () => {
           </tbody>
         </table>
       </div>
-      <Modal
-        open={open}
-        onClose={handelModal}
-      >
+      <Modal open={open} onClose={handelModal}>
         <AddCategory handelOpen={setOpen} />
       </Modal>
     </div>

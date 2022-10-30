@@ -56,6 +56,15 @@
 
     tbody tr {
       border-bottom: 1px solid #dddddd;
+      
+      .color-preview {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        display: inline-block;
+        margin-right: 10px;
+        border: 2px solid #333;
+      }
 
       td{
         text-align: center;
