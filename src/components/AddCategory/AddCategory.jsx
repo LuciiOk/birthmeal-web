@@ -2,10 +2,13 @@ import React from "react";
 import "./AddCategory.scss";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import { GithubPicker } from "react-color";
+import { SliderPicker } from "react-color";
 
 
 const AddCategory = ({ open, handelOpen }) => {
+  const [color, setColor] = React.useState("#000000");
+  const [showColorPicker, setShowColorPicker] = React.useState(false);
+
   return (
     <div className="addCategory__container">
       <div className="addCategory__header">
@@ -25,7 +28,17 @@ const AddCategory = ({ open, handelOpen }) => {
         </div>
         <div className="addCategory__form__group">
           <label htmlFor="color" className="form-label">Color</label>
-          <GithubPicker className="github__picker" />
+          <SliderPicker
+              color={color}
+              onChange={(color) => setColor(color.hex)}
+          />
+          <button
+            type="button"
+            style={{ backgroundColor: color }}
+            onClick={() => setShowColorPicker(!showColorPicker)}
+            className="color-button"
+          ></button>
+            
         </div>
           <button className="addCategory__form__btn">Agregar</button>
       </form>
