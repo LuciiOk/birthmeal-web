@@ -4,7 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Login from "../pages/Login/Login";
 import Home from "../pages/Home/Home";
 import NotFound from "../pages/NotFound/NotFound";
-import Companies from "../pages/Companies/Company";
+import Companies from "../pages/Companies/Companies";
 import Layout from "../Layout/Layout";
 import Categories from "../pages/Categories/Categories";
 

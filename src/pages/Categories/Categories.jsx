@@ -6,6 +6,10 @@ import "./Categories.scss";
 const Categories = () => {
   const [open, setOpen] = React.useState(false);
 
+  const handelModal = () => {
+    setOpen(!open);
+  };
+
   return (
     <div className="container">
       <div className="categories__header">
@@ -43,8 +47,11 @@ const Categories = () => {
           </tbody>
         </table>
       </div>
-      <Modal open={open} onClose={() => setOpen(false)}>
-        <AddCategory open={open} handelOpen={setOpen} />
+      <Modal
+        open={open}
+        onClose={handelModal}
+      >
+        <AddCategory handelOpen={setOpen} />
       </Modal>
     </div>
   );

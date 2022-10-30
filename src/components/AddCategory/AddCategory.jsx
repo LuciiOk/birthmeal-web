@@ -11,7 +11,7 @@ const AddCategory = ({ open, handelOpen }) => {
       <div className="addCategory__header">
         <h6 className="addCategory__title">Agregar Categoria</h6>
         <button className="addCategory__close" onClick={() => handelOpen(false)}>
-          <FontAwesomeIcon icon={faTimes} size="md" />
+          <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>
       <form className="addCategory__form">

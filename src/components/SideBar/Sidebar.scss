@@ -8,11 +8,25 @@ ul {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  padding: 1rem 1rem;
   background-color: #fff;
   border-right: 1px solid #e5e5e5;
+
+  ul > li {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0.5rem 1rem;
+  }
+
   .link {
     text-decoration: none;
+    font-size: 1.2rem;
+    padding: 0rem 2rem;
+    color: #333;
+
+    &:hover {
+      color: #000;
+    }
   }
 
   .logout {
@@ -21,16 +35,17 @@ ul {
     align-items: center;
     justify-content: center;
     .btn {
-      background-color: transparent;
+      background-color: #bf616a;
+      color: #fff;
       border: none;
+      border-radius: 5px;
+      padding: 0.5rem 1.2rem;
+      font-size: 1.2rem;
       cursor: pointer;
-      padding: 0;
-      margin: 0;
-      font-size: 1.6rem;
-      transition: color 0.2s ease-in-out;
+      margin-bottom: 1rem;
 
       &:hover {
-        color: #000;
+        background-color: #a2575f;
       }
     }
   }
