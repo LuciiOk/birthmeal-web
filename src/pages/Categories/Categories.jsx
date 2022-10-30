@@ -1,12 +1,18 @@
+import { Modal } from "@mui/material";
 import React from "react";
+import AddCategory from "../../components/AddCategory/AddCategory";
 import "./Categories.scss";
 
 const Categories = () => {
+  const [open, setOpen] = React.useState(false);
+
   return (
     <div className="container">
       <div className="categories__header">
         <h3 className="categories__title">Categorias</h3>
-        <button className="categories__add">Agregar</button>
+        <button className="categories__add" onClick={() => setOpen(true)}>
+          Agregar Categoria
+        </button>
       </div>
       <div className="categories__body">
         <table className="table">
@@ -37,6 +43,9 @@ const Categories = () => {
           </tbody>
         </table>
       </div>
+      <Modal open={open} onClose={() => setOpen(false)}>
+        <AddCategory open={open} handelOpen={setOpen} />
+      </Modal>
     </div>
   );
 };
