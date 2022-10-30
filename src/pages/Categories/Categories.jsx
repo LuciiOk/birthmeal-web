@@ -1,14 +1,33 @@
+import React, { useEffect, useState } from "react";
 import { Modal } from "@mui/material";
-import React from "react";
+import toast from "react-hot-toast";
 import AddCategory from "../../components/AddCategory/AddCategory";
 import "./Categories.scss";
+import AxiosInstance from "../../utils/AxiosIntance";
 
 const Categories = () => {
+  const [categories, setCategories] = useState([]);
+
+
   const [open, setOpen] = React.useState(false);
 
   const handelModal = () => {
     setOpen(!open);
   };
+
+  const getCategories = async () => {
+    try {
+      const response = await AxiosInstance.get("/categories");
+      setCategories(response.data);
+    } catch (error) {
+      console.log(error);
+      toast.error("Error al obtener categorias");
+    }
+  };
+
+  useEffect(() => {
+    getCategories();
+  }, []);
 
   return (
     <div className="container">
@@ -29,34 +48,17 @@ const Categories = () => {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>Dom</td>
-              <td>6000</td>
-              <td>
-                <button
-                  className="color-preview"
-                  style={{ backgroundColor: "#000000" }}
-                ></button>
-              </td>
-              <td>
-                <button className="categories__edit">Editar</button>
-                <button className="categories__delete">Eliminar</button>
-              </td>
-            </tr>
-            <tr>
-              <td>Melissa</td>
-              <td>5150</td>
-              <td>
-                <button
-                  className="color-preview"
-                  style={{ backgroundColor: "#ecf" }}
-                ></button>
-              </td>
-              <td>
-                <button className="categories__edit">Editar</button>
-                <button className="categories__delete">Eliminar</button>
-              </td>
-            </tr>
+            {categories.map((category) => (
+              <tr key={category._id}>
+                <td>{category.name}</td>
+                <td>{category.icon}</td>
+                <td>{category.color}</td>
+                <td>
+                  <button className="categories__edit">Editar</button>
+                  <button className="categories__delete">Eliminar</button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>

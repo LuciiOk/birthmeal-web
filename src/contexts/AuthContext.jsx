@@ -25,6 +25,17 @@ const AuthProvider = ({ children }) => {
   const logout = () => {
     setIsAuth(false);
     setUser(null);
+    setToken(null);
+  };
+
+  const userAuth = () => {
+    const token = localStorage.getItem("token");
+    const user = JSON.parse(localStorage.getItem("user"));
+    if (token && user) {
+      setToken(token);
+      setUser(user);
+      setIsAuth(true);
+    }
   };
 
   React.useEffect(() => {
@@ -45,6 +56,7 @@ const AuthProvider = ({ children }) => {
         token,
         login,
         logout,
+        userAuth,
       }}
     >
       {children}

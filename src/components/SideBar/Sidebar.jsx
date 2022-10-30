@@ -1,14 +1,21 @@
 import React, { useContext } from "react";
 import { Link } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../contexts/AuthContext";
 import "./Sidebar.scss";
 
 
 const Sidebar = () => {
+  const navigate = useNavigate();
+
   const {
     logout
   } = useContext(AuthContext)
+
+  const handleLogout = () => {
+    logout();
+    navigate("/login");
+  }
 
   return (
     <div className="sidebar">
@@ -21,7 +28,7 @@ const Sidebar = () => {
         </li>
       </ul>
       <div className="logout">
-        <button className="btn" onClick={logout}>Logout</button>
+        <button className="btn" onClick={handleLogout}>Cerrar Sesión</button>
       </div>
     </div>
   );

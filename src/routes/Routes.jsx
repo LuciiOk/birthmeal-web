@@ -9,16 +9,18 @@ import Layout from "../Layout/Layout";
 import Categories from "../pages/Categories/Categories";
 
 const RoutesC = () => {
-  const { isAuth } = useContext(AuthContext);
+  const { userAuth } = useContext(AuthContext);
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
-        {!isAuth && <Route path="/login" element={<Login />} />}
-        {isAuth && <Route path="/login" element={<Navigate to="/admin" />} />}
+        {!userAuth() && <Route path="/login" element={<Login />} />}
+        {userAuth() && (
+          <Route path="/login" element={<Navigate to="/admin" />} />
+        )}
         <Route path="*" element={<NotFound />} />
-        {isAuth && (
+        {userAuth() && (
           <Route path="admin/" element={<Layout />}>
             <Route path="companies" element={<Companies />} />
             <Route path="categories" element={<Categories />} />
