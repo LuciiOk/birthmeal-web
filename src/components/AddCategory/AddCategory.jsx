@@ -1,8 +1,8 @@
 import React from "react";
 import "./AddCategory.scss";
-// font awesome close 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import { GithubPicker } from "react-color";
 
 
 const AddCategory = ({ open, handelOpen }) => {
@@ -22,6 +22,10 @@ const AddCategory = ({ open, handelOpen }) => {
         <div className="addCategory__form__group">
           <label htmlFor="icon" className="form-label">Icono</label>
           <input type="text" name="icon" id="icon" className="form-input" />
+        </div>
+        <div className="addCategory__form__group">
+          <label htmlFor="color" className="form-label">Color</label>
+          <GithubPicker className="github__picker" />
         </div>
           <button className="addCategory__form__btn">Agregar</button>
       </form>
