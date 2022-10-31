@@ -1,7 +1,7 @@
 import React from "react";
 import "./Table.scss";
 
-const Table = ({ data, head, onDelete }) => {
+const Table = ({ data, head, onDelete, onEdit }) => {
   return (
     <table className="table">
       <thead>
@@ -26,7 +26,7 @@ const Table = ({ data, head, onDelete }) => {
               )
             )}
             <td>
-              <button className="btn__edit">Editar</button>
+              <button className="btn__edit" onClick={() => onEdit(item.id)}>Editar</button>
               <button className="btn__delete" onClick={() => onDelete(item.id)}>
                 Eliminar
               </button>

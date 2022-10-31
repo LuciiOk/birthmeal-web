@@ -1,14 +1,14 @@
 import React from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
-import './Modal.scss';
+import "./Modal.scss";
 
-const Modal = ({ title, handleOpen, children }) => {
+const Modal = ({ title, onClose, children }) => {
   return (
     <div className="modal__container">
       <div className="modal__header">
         <h6 className="modal__title">{title}</h6>
-        <button className="modal__close" onClick={() => handleOpen(false)}>
+        <button className="modal__close" onClick={onClose}>
           <FontAwesomeIcon icon={faTimes} />
         </button>
       </div>

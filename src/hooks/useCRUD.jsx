@@ -40,11 +40,27 @@ const useCRUD = (urlPath) => {
     }
   };
 
+  const updateData = async (id, newData) => {
+    try {
+      const { data: dataResponse } = await AxiosInstance.put(
+        `${urlPath}/${id}`,
+        newData
+      );
+      setData((prev) =>
+        prev.map((item) => (item.id === id ? dataResponse : item))
+      );
+      toast.success("Datos actualizados correctamente");
+    } catch (error) {
+      console.log(error);
+      toast.error("Error al actualizar datos");
+    }
+  };
+
   useEffect(() => {
     getData();
   }, []);
 
-  return { data, addData, deleteData };
+  return { data, addData, deleteData, updateData };
 };
 
 export default useCRUD;

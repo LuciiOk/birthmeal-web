@@ -2,9 +2,9 @@ import React from "react";
 import { SliderPicker } from "react-color";
 import "./AddCategory.scss";
 
-const AddCategory = ({ onSubmit }) => {
-  const [name, setName] = React.useState("");
-  const [color, setColor] = React.useState("#000000");
+const AddCategory = ({ onSubmit, dataEdit }) => {
+  const [name, setName] = React.useState(dataEdit?.name || "");
+  const [color, setColor] = React.useState(dataEdit?.color || "#000000");
   const [showColorPicker, setShowColorPicker] = React.useState(false);
 
   const handleSubmmit = (e) => {
@@ -43,7 +43,9 @@ const AddCategory = ({ onSubmit }) => {
           style={{ backgroundColor: color }}
           onClick={() => setShowColorPicker(!showColorPicker)}
           className="color-button"
-        ></button>
+        >
+          {color}{" "}
+        </button>
       </div>
       <button className="addCategory__form__btn" onClick={handleSubmmit}>
         Agregar
