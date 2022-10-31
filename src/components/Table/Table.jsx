@@ -2,7 +2,6 @@ import React from "react";
 import "./Table.scss";
 
 const Table = ({ data, head, onDelete }) => {
-
   return (
     <table className="table">
       <thead>
@@ -16,9 +15,16 @@ const Table = ({ data, head, onDelete }) => {
       <tbody>
         {data.map((item, index) => (
           <tr key={index}>
-            {head.map((field) => (
-              <td key={field.key}>{item[field.key]}</td>
-            ))}
+            {head.map((field) =>
+              field.key === "color" ? (
+                <td
+                  key={field.key}
+                  style={{ color: item[field.key] }}
+                >{item[field.key]}</td>
+              ) : (
+                <td key={field.key}>{item[field.key]}</td>
+              )
+            )}
             <td>
               <button className="btn__edit">Editar</button>
               <button className="btn__delete" onClick={() => onDelete(item.id)}>
