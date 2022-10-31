@@ -1,97 +1,58 @@
-.addCategory__container  {
-  // centering the container
-  width: 400px;
-  background-color: #fff;
-  border-radius: 5px;
-  margin: 0 auto;
-  margin-top: 20px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-  // vertical centering
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
+.addCategory__form {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
 
-
-  .addCategory__header {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0 20px;
-    box-sizing: border-box;
-    border-bottom: 1px solid #eee;
-    height: 50px;
-    font-size: 25px;
+  .form-label {
+    font-size: 20px;
     font-weight: 600;
     color: #333;
-
-    .addCategory__close {
-      cursor: pointer;
-      border: none;
-      background-color: transparent;
-      font-size: 25px;
-      color: #333;
-    }
+    margin-bottom: 10px;
   }
 
-  .addCategory__form {
+  .github__picker {
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+
+  .form-input {
     width: 100%;
-    padding: 20px;
+    height: 40px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 0 10px;
     box-sizing: border-box;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+  }
 
-    .form-label {
-      font-size: 20px;
-      font-weight: 600;
-      color: #333;
-      margin-bottom: 10px;
+  .color-button {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 20px;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
 
-    }
+  .addCategory__form__btn {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #009879;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
 
-    .github__picker {
-      width: 100% !important;
-      margin-bottom: 20px;
-    }
-
-    .form-input {
-      width: 100%;
-      height: 40px;
-      border: 1px solid #eee;
-      border-radius: 5px;
-      padding: 0 10px;
-      box-sizing: border-box;
-      font-size: 20px;
-      color: #333;
-      margin-bottom: 20px;
-    }
-
-    .color-button {
-      width: 100%;
-      height: 40px;
-      border: none;
-      border-radius: 5px;
-      font-size: 20px;
-      font-weight: 600;
-      color: #fff;
-      margin-bottom: 20px;
-      cursor: pointer;
-      margin-top: 1rem;
-    }
-
-    .addCategory__form__btn {
-      width: 100%;
-      height: 40px;
-      border: none;
-      border-radius: 5px;
-      background-color: #009879;
-      color: #fff;
-      font-size: 20px;
-      font-weight: 600;
-      cursor: pointer;
-
-      &:hover {
-        background-color: #007a5f;
-      }
+    &:hover {
+      background-color: #007a5f;
     }
   }
 }
