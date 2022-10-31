@@ -31,13 +31,21 @@ const AuthProvider = ({ children }) => {
     localStorage.removeItem("user");
   };
 
-  const userAuth = () => {
-    const localToken = localStorage.getItem("token");
-    const localUser = JSON.parse(localStorage.getItem("user"));
-    if (localToken && localUser) {
-      setToken(localToken);
-      setUser(localUser);
-      setIsAuth(true);
+  const userAuth = async () => {
+    try {
+      const localToken = localStorage.getItem("token");
+      const localUser = localStorage.getItem("user");
+      const { data } = await AxiosInstance.get("auth/verify-token");
+      if (data) {
+        setToken(localToken);
+        setUser(JSON.parse(localUser));
+        setIsAuth(true);
+      } else {
+        logout();
+      }
+    } catch (error) {
+      logout();
+      console.log(error);
     }
   };
 
