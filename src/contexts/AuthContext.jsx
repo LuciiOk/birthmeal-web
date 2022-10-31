@@ -14,38 +14,35 @@ const AuthProvider = ({ children }) => {
       password,
     };
     const response = await AxiosInstance.post("auth/admin/login", userData);
-    const { access_token, user } = response.data;
-    setToken(access_token);
-    setUser(user);
-    setIsAuth(true);
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(user));
+    const { access_token, user: userResponse } = response.data;
+    if (access_token && userResponse) {
+      localStorage.setItem("token", access_token);
+      setToken(access_token);
+      setUser(userResponse);
+      setIsAuth(true);
+    }
   };
 
   const logout = () => {
     setIsAuth(false);
     setUser(null);
     setToken(null);
+    localStorage.removeItem("token");
+    localStorage.removeItem("user");
   };
 
   const userAuth = () => {
-    const token = localStorage.getItem("token");
-    const user = JSON.parse(localStorage.getItem("user"));
-    if (token && user) {
-      setToken(token);
-      setUser(user);
+    const localToken = localStorage.getItem("token");
+    const localUser = JSON.parse(localStorage.getItem("user"));
+    if (localToken && localUser) {
+      setToken(localToken);
+      setUser(localUser);
       setIsAuth(true);
     }
   };
 
   React.useEffect(() => {
-    const token = localStorage.getItem("token");
-    const user = localStorage.getItem("user");
-    if (token && user) {
-      setToken(token);
-      setUser(JSON.parse(user));
-      setIsAuth(true);
-    }
+    userAuth();
   }, []);
 
   return (
@@ -56,7 +53,6 @@ const AuthProvider = ({ children }) => {
         token,
         login,
         logout,
-        userAuth,
       }}
     >
       {children}

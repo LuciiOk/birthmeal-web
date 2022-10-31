@@ -49,7 +49,7 @@ const Categories = () => {
           </thead>
           <tbody>
             {categories.map((category) => (
-              <tr key={category._id}>
+              <tr key={category.id}>
                 <td>{category.name}</td>
                 <td>{category.icon}</td>
                 <td>{category.color}</td>
