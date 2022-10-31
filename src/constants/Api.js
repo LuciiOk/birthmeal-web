@@ -1,4 +1,4 @@
-export const BASE_URL = 'http://45.7.231.52/api'
+export const BASE_URL = 'https://birthmeal.fun/api'
 
 export const METHODS = {
   GET: "GET",
