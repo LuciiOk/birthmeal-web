@@ -28,6 +28,7 @@ const RoutesC = () => {
             <Route path="*" element={<NotFound />} />
           </Route>
         )}
+        {!isAuth && <Route path="/admin" element={<Navigate to="/login" />} />}
       </Routes>
     </BrowserRouter>
   );
