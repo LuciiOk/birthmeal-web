@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import Table from "../components/Table/Table";
 import useCRUD from "../hooks/useCRUD";
 import AddCategory from "../components/AddCategory/AddCategory";
+import AddCompany from "../components/AddCompany/AddCompany";
 import { Modal } from "@mui/material";
 import ModalC from "../components/Modal/Modal";
 
@@ -23,6 +24,7 @@ const DashBoardLayout = ({ title, fields, urlPath }) => {
   const onSubmit = (data) => {
     if (dataEdit) {
       updateData(dataEdit.id, data);
+      console.log(data)
     } else {
       addData(data);
     }
@@ -46,8 +48,17 @@ const DashBoardLayout = ({ title, fields, urlPath }) => {
         />
       </div>
       <Modal open={open} onClose={onClose}>
-        <ModalC title="Agregar Categoria" onClose={onClose}>
-          <AddCategory onSubmit={onSubmit} dataEdit={dataEdit} />
+        <ModalC
+          onClose={onClose}
+          title={dataEdit ? "Editar" : "Agregar"}
+          width={urlPath === "companies" ? "600px" : "400px"}
+        >
+          {urlPath === "categories" && (
+            <AddCategory onSubmit={onSubmit} dataEdit={dataEdit} />
+          )}
+          {urlPath === "companies" && (
+            <AddCompany onSubmit={onSubmit} dataEdit={dataEdit} />
+          )}
         </ModalC>
       </Modal>
     </div>

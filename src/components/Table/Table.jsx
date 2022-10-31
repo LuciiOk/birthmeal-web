@@ -21,6 +21,8 @@ const Table = ({ data, head, onDelete, onEdit }) => {
                   key={field.key}
                   style={{ color: item[field.key] }}
                 >{item[field.key]}</td>
+              ) : (field.key2) ? (
+                <td key={field.key}>{item[field.key][field.key2]}</td>
               ) : (
                 <td key={field.key}>{item[field.key]}</td>
               )

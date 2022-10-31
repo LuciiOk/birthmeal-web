@@ -6,7 +6,8 @@ import DashBoardLayout from "../../Layout/DashBoardLayout";
 function Companies() {
   const fields = [
     { name: "Nombre", key: "name" },
-    { name: "website", key: "webUrl" },
+    { name: "Website", key: "webUrl" },
+    { name: "Categoria", key: "category", key2: "name" },
   ];
 
   return (

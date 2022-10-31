@@ -1,0 +1,58 @@
+.addCompany__form {
+  width: 100%;
+  padding: 20px;
+  box-sizing: border-box;
+
+  .form-label {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 10px;
+  }
+
+  .github__picker {
+    width: 100% !important;
+    margin-bottom: 20px;
+  }
+
+  .form-input {
+    width: 100%;
+    height: 40px;
+    border: 1px solid #eee;
+    border-radius: 5px;
+    padding: 0 10px;
+    box-sizing: border-box;
+    font-size: 20px;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .color-button {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    font-size: 20px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 20px;
+    cursor: pointer;
+    margin-top: 1rem;
+  }
+
+  .addCompany__form__btn {
+    width: 100%;
+    height: 40px;
+    border: none;
+    border-radius: 5px;
+    background-color: #009879;
+    color: #fff;
+    font-size: 20px;
+    font-weight: 600;
+    cursor: pointer;
+
+    &:hover {
+      background-color: #007a5f;
+    }
+  }
+}
