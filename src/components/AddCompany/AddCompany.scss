@@ -28,32 +28,26 @@
     background-color: #fff;
   }
 
-  .color-button {
-    width: 100%;
-    height: 40px;
-    border: none;
-    border-radius: 5px;
-    font-size: 20px;
-    font-weight: 600;
-    color: #fff;
-    margin-bottom: 20px;
-    cursor: pointer;
-    margin-top: 1rem;
-  }
+  .addCompany__form__actions {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 20px;
 
-  .addCompany__form__btn {
-    width: 100%;
-    height: 40px;
-    border: none;
-    border-radius: 5px;
-    background-color: #009879;
-    color: #fff;
-    font-size: 20px;
-    font-weight: 600;
-    cursor: pointer;
+    .btn__prev, .btn__next, .btn__save {
+      padding: 10px 20px;
+      border-radius: 5px;
+      font-size: 1rem;
+      font-weight: 600;
+      color: #fff;
+      background-color: #009879;
+      border: none;
+      cursor: pointer;
+      transition: all 0.3s ease-in-out;
+      margin-left: 10px;
 
-    &:hover {
-      background-color: #007a5f;
+      &:hover {
+        background-color: #007a5e;
+      }
     }
   }
 }

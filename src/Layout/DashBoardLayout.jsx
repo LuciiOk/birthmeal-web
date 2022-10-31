@@ -24,7 +24,6 @@ const DashBoardLayout = ({ title, fields, urlPath }) => {
   const onSubmit = (data) => {
     if (dataEdit) {
       updateData(dataEdit.id, data);
-      console.log(data)
     } else {
       addData(data);
     }
