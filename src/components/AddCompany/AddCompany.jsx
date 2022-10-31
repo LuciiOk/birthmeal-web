@@ -36,9 +36,12 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
 
   const getLocations = async () => {
     try {
+      if (!name) {
+        toast.error("Por favor ingrese el nombre de la empresa");
+        return;
+      }
       const { data } = await AxiosInstance.get(`google-maps/${name}`);
       setLocations(data);
-      console.log(data);
     } catch (error) {
       console.log(error);
       toast.error("Error al obtener las ubicaciones");
@@ -115,6 +118,15 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
           Obtener ubicaciones
         </button>
         <ul className="locations__list__items">
+          {locations.length === 0 && (  
+            <>
+              <li className="locations__list__item">
+                <span className="locations__list__item__name">
+                  No hay ubicaciones
+                </span>
+              </li>
+            </>
+          )}
           {locations.map((item) => (
             <LocationItem key={item.id} {...item} />
           ))}
