@@ -4,10 +4,10 @@ import toast from "react-hot-toast";
 import AddCategory from "../../components/AddCategory/AddCategory";
 import "./Categories.scss";
 import AxiosInstance from "../../utils/AxiosIntance";
+import Table from "../../components/Table/Table";
 
 const Categories = () => {
   const [categories, setCategories] = useState([]);
-
 
   const [open, setOpen] = React.useState(false);
 
@@ -29,6 +29,17 @@ const Categories = () => {
     getCategories();
   }, []);
 
+  const fields = [
+    {
+      name: "Nombre",
+      key: "name",
+    },
+    {
+      name: "Color",
+      key: "color",
+    },
+  ];
+
   return (
     <div className="container">
       <div className="categories__header">
@@ -38,29 +49,7 @@ const Categories = () => {
         </button>
       </div>
       <div className="categories__body">
-        <table className="table">
-          <thead>
-            <tr>
-              <th>Nombre</th>
-              <th>Icono</th>
-              <th>Color</th>
-              <th>Opciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            {categories.map((category) => (
-              <tr key={category.id}>
-                <td>{category.name}</td>
-                <td>{category.icon}</td>
-                <td>{category.color}</td>
-                <td>
-                  <button className="categories__edit">Editar</button>
-                  <button className="categories__delete">Eliminar</button>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+        <Table data={categories} head={fields} />
       </div>
       <Modal open={open} onClose={handelModal}>
         <AddCategory handelOpen={setOpen} />
