@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useForm, useFormState } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import "./AddCompany.scss";
 import AxiosInstance from "../../utils/AxiosIntance";
 import LocationsStep from "./LocationStep";
@@ -9,7 +9,8 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, ...formState },
+    formState: { errors },
+    getValues
   } = useForm({
     defaultValues: {
       name: dataEdit?.name,
@@ -30,19 +31,17 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
   };
 
   const onSubmitData = (data) => {
-    if (formState.isValid) {
-      onSubmit(data, locations);
-    }
+    onSubmit({ ...data, locations });
   };
 
   return (
     <form className="addCompany__form" onSubmit={handleSubmit(onSubmitData)}>
-      {step === 1 && <FormStep {...{ register, errors }} />}
+      {step === 1 && <FormStep {...{ register, errors, onNextStep }} />}
       {step === 2 && (
         <LocationsStep
           locations={locations}
           setLocations={setLocations}
-          name={dataEdit?.name || ""}
+          name={dataEdit?.name || getValues("name")}z
         />
       )}
       <div className="addCompany__form__actions">
@@ -66,7 +65,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
   );
 };
 
-const FormStep = ({ register, errors }) => {
+const FormStep = ({ register, errors, onNextStep }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {
