@@ -46,6 +46,7 @@ const useCRUD = (urlPath) => {
         `${urlPath}/${id}`,
         newData
       );
+      console.log(dataResponse);
       setData((prev) =>
         prev.map((item) => (item.id === id ? dataResponse : item))
       );

@@ -5,6 +5,7 @@ const Categories = () => {
   const fields = [
     { name: "Nombre", key: "name" },
     { name: "Color", key: "color" },
+    { name: "Icono", key: "icon" },
   ];
 
   return (

@@ -2,14 +2,18 @@ import React from "react";
 import { SliderPicker } from "react-color";
 import "./AddCategory.scss";
 
+import IconPicker from "../IconPicker/IconPicker";
+
 const AddCategory = ({ onSubmit, dataEdit }) => {
   const [name, setName] = React.useState(dataEdit?.name || "");
+  const [icon, setIcon] = React.useState(dataEdit?.icon || "");
   const [color, setColor] = React.useState(dataEdit?.color || "#000000");
   const [showColorPicker, setShowColorPicker] = React.useState(false);
 
   const handleSubmmit = (e) => {
     e.preventDefault();
-    onSubmit({ name, color });
+    console.log({ name, icon, color });
+    onSubmit({ name, color, icon });
   };
 
   return (
@@ -28,12 +32,6 @@ const AddCategory = ({ onSubmit, dataEdit }) => {
         />
       </div>
       <div className="addCategory__form__group">
-        <label htmlFor="icon" className="form-label">
-          Icono
-        </label>
-        <input type="text" name="icon" id="icon" className="form-input" />
-      </div>
-      <div className="addCategory__form__group">
         <label htmlFor="color" className="form-label">
           Color
         </label>
@@ -44,8 +42,14 @@ const AddCategory = ({ onSubmit, dataEdit }) => {
           onClick={() => setShowColorPicker(!showColorPicker)}
           className="color-button"
         >
-          {color}{" "}
+          {color}
         </button>
+      </div>
+      <div className="addCategory__form__group">
+        <label htmlFor="icon" className="form-label">
+          Icono
+        </label>
+        <IconPicker color={color} onChange={setIcon} iconName={icon} />
       </div>
       <button className="addCategory__form__btn" onClick={handleSubmmit}>
         Agregar

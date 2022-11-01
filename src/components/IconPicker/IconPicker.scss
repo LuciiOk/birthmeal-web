@@ -1,0 +1,71 @@
+.iconPicker__btn {
+  background-color: #fff;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  color: #333;
+  cursor: pointer;
+  font-size: 30px;
+  font-weight: 600;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 20px;
+  text-align: center;
+  text-decoration: none;
+  text-transform: uppercase;
+  transition: all 0.2s ease-in-out;
+  width: 100%;
+
+  &:hover {
+    background-color: #eee;
+    border-color: #aaa;
+  }
+}
+
+.iconPicker {
+  width: 100%;
+  .iconPicker__icons__search {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin: 10px auto;
+
+    input {
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      font-size: 14px;
+      height: 40px;
+      line-height: 40px;
+      padding: 0 20px;
+      width: 100%;
+
+      &:focus {
+        border-color: #aaa;
+        outline: none;
+      }
+    }
+  }
+  .iconPicker__icons {
+    height: 200px;
+    overflow-y: scroll;
+
+    button {
+      width: calc(100% / 5 - 20px);
+      height: 40px;
+      margin: 10px;
+      border: 1px solid #ccc;
+      border-radius: 4px;
+      background-color: #fff;
+      color: #333;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 40px;
+
+      &:hover {
+        background-color: #eee;
+        border-color: #aaa;
+        cursor: pointer;
+      }
+    }
+  }
+}
