@@ -42,7 +42,6 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
           locations={locations}
           setLocations={setLocations}
           name={dataEdit?.name || getValues("name")}
-          z
         />
       )}
       <div className="addCompany__form__actions">

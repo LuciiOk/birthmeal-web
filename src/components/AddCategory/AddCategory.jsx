@@ -1,23 +1,33 @@
 import React from "react";
 import { SliderPicker } from "react-color";
+import { useForm } from "react-hook-form";
+
 import "./AddCategory.scss";
 
 import IconPicker from "../IconPicker/IconPicker";
 
 const AddCategory = ({ onSubmit, dataEdit }) => {
-  const [name, setName] = React.useState(dataEdit?.name || "");
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: dataEdit,
+    mode: "all",
+  });
   const [icon, setIcon] = React.useState(dataEdit?.icon || "");
   const [color, setColor] = React.useState(dataEdit?.color || "#000000");
   const [showColorPicker, setShowColorPicker] = React.useState(false);
 
-  const handleSubmmit = (e) => {
-    e.preventDefault();
-    console.log({ name, icon, color });
-    onSubmit({ name, color, icon });
+  const send = (data) => {
+    if (!color || !icon) {
+      return;
+    }
+    onSubmit({ ...data, color, icon });
   };
 
   return (
-    <form className="addCategory__form">
+    <form className="addCategory__form" onSubmit={handleSubmit(send)}>
       <div className="addCategory__form__group">
         <label htmlFor="name" className="form-label">
           Nombre
@@ -27,9 +37,14 @@ const AddCategory = ({ onSubmit, dataEdit }) => {
           name="name"
           id="name"
           className="form-input"
-          value={name}
-          onChange={(e) => setName(e.target.value)}
+          placeholder="Nombre de la categoria"
+          {...register("name", {
+            required: "El nombre es requerido",
+          })}
         />
+        {errors.name && (
+          <span className="form-error">{errors.name.message}</span>
+        )}
       </div>
       <div className="addCategory__form__group">
         <label htmlFor="color" className="form-label">
@@ -51,7 +66,7 @@ const AddCategory = ({ onSubmit, dataEdit }) => {
         </label>
         <IconPicker color={color} onChange={setIcon} iconName={icon} />
       </div>
-      <button className="addCategory__form__btn" onClick={handleSubmmit}>
+      <button className="addCategory__form__btn">
         Agregar
       </button>
     </form>
