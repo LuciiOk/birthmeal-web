@@ -5,11 +5,13 @@ import AddCategory from "../components/AddCategory/AddCategory";
 import AddCompany from "../components/AddCompany/AddCompany";
 import { Modal } from "@mui/material";
 import ModalC from "../components/Modal/Modal";
+import ConfirmModal from "../components/ConfirmModal/ConfirmModal";
 
 const DashBoardLayout = ({ title, fields, urlPath }) => {
   const { data, addData, deleteData, updateData } = useCRUD(urlPath);
   const [open, setOpen] = useState(false);
   const [dataEdit, setDataEdit] = useState(null);
+  const [showConfirmModal, setShowConfirmModal] = useState(false);
 
   const onClose = () => {
     setOpen(false);
@@ -30,6 +32,11 @@ const DashBoardLayout = ({ title, fields, urlPath }) => {
     onClose();
   };
 
+  const onDelete = (id) => {
+    setShowConfirmModal(true);
+    setDataEdit(data.find((item) => item.id === id));
+  };
+
   return (
     <div className="container">
       <div className="CRUD__header">
@@ -39,12 +46,7 @@ const DashBoardLayout = ({ title, fields, urlPath }) => {
         </button>
       </div>
       <div className="CRUD__body">
-        <Table
-          data={data}
-          head={fields}
-          onDelete={deleteData}
-          onEdit={onEdit}
-        />
+        <Table data={data} head={fields} onDelete={onDelete} onEdit={onEdit} />
       </div>
       <Modal open={open} onClose={onClose}>
         <ModalC
@@ -59,6 +61,26 @@ const DashBoardLayout = ({ title, fields, urlPath }) => {
             <AddCompany onSubmit={onSubmit} dataEdit={dataEdit} />
           )}
         </ModalC>
+      </Modal>
+      <Modal open={showConfirmModal} onClose={() => setShowConfirmModal(false)}>
+        <ConfirmModal
+          title="Eliminar"
+          message="¿Está seguro que desea eliminar este elemento?"
+          onConfirm={() => {
+            deleteData(dataEdit.id);
+            setShowConfirmModal(false);
+            setDataEdit(null);
+          }}
+          onCancel={() => {
+            setShowConfirmModal(false);
+            setDataEdit(null);
+          }}
+          show={showConfirmModal}
+          setShow={() => {
+            setShowConfirmModal(false);
+            setDataEdit(null);
+          }}
+        />
       </Modal>
     </div>
   );

@@ -35,8 +35,8 @@ const useCRUD = (urlPath) => {
       setData(data.filter((item) => item.id !== id));
       toast.success("Eliminado correctamente");
     } catch (error) {
-      console.log(error);
-      toast.error("Error al eliminar datos");
+      const { data: errorResponse } = error.response;
+      toast.error(errorResponse.message);
     }
   };
 

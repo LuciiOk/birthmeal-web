@@ -1,0 +1,33 @@
+.confirm-modal {
+  margin: 1rem;
+  .confirm-modal__buttons {
+    display: flex;
+    justify-content: flex-end;
+    .confirm-modal__button__confirm {
+      background-color: #4caf50;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+
+      &:hover {
+        background-color: #43a047;
+        cursor: pointer;
+      }
+    }
+
+    .confirm-modal__button__cancel {
+      margin-left: 1rem;
+      background-color: #f44336;
+      color: #fff;
+      border: none;
+      padding: 0.5rem 1rem;
+      border-radius: 0.25rem;
+
+      &:hover {
+        background-color: #e53935;
+        cursor: pointer;
+      }
+    }
+  }
+}
