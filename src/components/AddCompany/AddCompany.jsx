@@ -10,7 +10,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
     register,
     handleSubmit,
     formState: { errors },
-    getValues
+    getValues,
   } = useForm({
     defaultValues: {
       name: dataEdit?.name,
@@ -41,7 +41,8 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
         <LocationsStep
           locations={locations}
           setLocations={setLocations}
-          name={dataEdit?.name || getValues("name")}z
+          name={dataEdit?.name || getValues("name")}
+          z
         />
       )}
       <div className="addCompany__form__actions">
@@ -106,14 +107,19 @@ const FormStep = ({ register, errors, onNextStep }) => {
           Url
         </label>
         <input
-          type="text"
+          type="url"
           name="webUrl"
           id="webUrl"
           className="form-input"
-          {...register("webUrl", { required: true })}
+          {...register("webUrl", { required: true, pattern: /^https?:\/\// })}
         />
         {errors.webUrl && (
           <span className="form-error">La url es requerida</span>
+        )}
+        {errors.webUrl?.type === "pattern" && (
+          <span className="form-error">
+            La url debe empezar con http:// o https://
+          </span>
         )}
       </div>
       <div className="addCompany__form__group">
