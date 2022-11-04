@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, forwardRef } from "react";
 import { useForm } from "react-hook-form";
 import "./AddCompany.scss";
 import AxiosInstance from "../../utils/AxiosIntance";
@@ -37,7 +37,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
   const getLocations = async () => {
     const response = await AxiosInstance.get(`location/${dataEdit.id}`);
     setLocations(response.data);
-  }
+  };
 
   useEffect(() => {
     if (dataEdit) {
@@ -76,7 +76,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
   );
 };
 
-const FormStep = ({ register, errors, onNextStep }) => {
+const FormStep = ({ register, errors }) => {
   const [categories, setCategories] = useState([]);
 
   useEffect(() => {

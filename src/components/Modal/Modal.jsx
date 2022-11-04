@@ -1,9 +1,9 @@
-import React from "react";
+import React, { forwardRef } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
 import "./Modal.scss";
 
-const Modal = ({ title, onClose, children, width }) => {
+const Modal = forwardRef(({ title, onClose, children, width }, ref) => {
   return (
     <div className="modal__container" style={{ width: width }}>
       <div className="modal__header">
@@ -15,6 +15,6 @@ const Modal = ({ title, onClose, children, width }) => {
       {children}
     </div>
   );
-};
+});
 
 export default Modal;
