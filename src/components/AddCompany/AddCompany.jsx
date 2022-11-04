@@ -34,6 +34,17 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
     onSubmit({ ...data, locations });
   };
 
+  const getLocations = async () => {
+    const response = await AxiosInstance.get(`location/${dataEdit.id}`);
+    setLocations(response.data);
+  }
+
+  useEffect(() => {
+    if (dataEdit) {
+      getLocations();
+    }
+  }, [dataEdit]);
+
   return (
     <form className="addCompany__form" onSubmit={handleSubmit(onSubmitData)}>
       {step === 1 && <FormStep {...{ register, errors, onNextStep }} />}

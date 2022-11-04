@@ -8,6 +8,7 @@ const useCRUD = (urlPath) => {
   const getData = async () => {
     try {
       const { data: responseData } = await AxiosInstance.get(urlPath);
+      console.log(responseData);
       setData(responseData);
     } catch (error) {
       console.log(error);
