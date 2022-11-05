@@ -30,8 +30,20 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
     setStep(step - 1);
   };
 
-  const onSubmitData = (data) => {
-    onSubmit({ ...data, locations });
+  const onSubmitData = async (data) => {
+    const image = data.logo;
+    // upload image
+    const formData = new FormData();
+    formData.append("file", image[0]);
+    const { data: imageUrl } = await AxiosInstance.post("imgur/upload", formData)
+    console.log(imageUrl);
+    const companyData = {
+      ...data,
+      logo: imageUrl.data.link,
+      locations,
+    };
+
+    onSubmit(companyData);
   };
 
   const getLocations = async () => {
@@ -167,6 +179,13 @@ const FormStep = ({ register, errors }) => {
           <span className="form-error">La descripción es requerida</span>
         )}
       </div>
+      <div className="addCompany__form__group">
+        <label htmlFor="logo" className="form-label">
+          Logo
+        </label>
+        <input type="file" name="logo" id="logo" className="form-input" {...register("logo")} />
+      </div>
+      {errors.logo && <span className="form-error">El logo es requerido</span>}
     </React.Fragment>
   );
 };
