@@ -32,7 +32,7 @@ AxiosInstance.interceptors.response.use(
         item.id = item._id;
         delete item._id;
       });
-    } else {
+    } else if (response.data._id) {
       response.data.id = response.data._id;
       delete response.data._id;
     }
