@@ -33,7 +33,7 @@ const IconPicker = ({ color = "#ccefde", onChange, iconName }) => {
         className="iconPicker__btn"
         onClick={() => setShowIcons(!showIcons)}
       >
-        <FontAwesomeIcon icon={icon.icon} color={color} />
+        <FontAwesomeIcon icon={icon.icon || Icons.faQuestion} color={color} />
       </button>
       {showIcons && (
         <div className="iconPicker">
