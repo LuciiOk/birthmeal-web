@@ -24,6 +24,7 @@ const FormStep = ({ register, errors, fields, append, remove }) => {
       }
     };
     getCategories();
+    append({ name: "" });
   }, []);
 
   if (!categories.length) {
@@ -136,6 +137,7 @@ const FormStep = ({ register, errors, fields, append, remove }) => {
                   type="button"
                   className="btn__remove"
                   onClick={() => removeBenefit(index)}
+                  disabled={fields.length === 1}
                 >
                   <FontAwesomeIcon icon={faTimes} />
                 </button>
