@@ -40,6 +40,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
 
   const onSubmitData = async (data) => {
     try {
+      console.log(data);
       const image = new File([data.logo[0]], "logo.png", {
         type: "image/png",
       });

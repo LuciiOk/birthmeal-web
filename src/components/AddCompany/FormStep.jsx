@@ -123,22 +123,27 @@ const FormStep = ({ register, errors, fields, append, remove }) => {
         </button>
         <div className="benefits__inputs__container">
           {fields.map((item, index) => (
-            <div key={item.id} className="addCompany__form__group__benefit">
-              <input
-                type="text"
-                name={`benefits[${index}].name`}
-                id={`benefits[${index}].name`}
-                className="form-input"
-                {...register(`benefits[${index}].name`, { required: true })}
-              />
-              <button
-                type="button"
-                className="btn__remove"
-                onClick={() => removeBenefit(index)}
-              >
-                <FontAwesomeIcon icon={faTimes} />
-              </button>
-            </div>
+            <>
+              <div key={item.id} className="addCompany__form__group__benefit">
+                <input
+                  type="text"
+                  name={`benefits[${index}].name`}
+                  id={`benefits[${index}].name`}
+                  className="form-input"
+                  {...register(`benefits[${index}].name`, { required: true })}
+                />
+                <button
+                  type="button"
+                  className="btn__remove"
+                  onClick={() => removeBenefit(index)}
+                >
+                  <FontAwesomeIcon icon={faTimes} />
+                </button>
+              </div>
+              {errors.benefits?.[index]?.name && (
+                <span className="form-error">El beneficio es requerido</span>
+              )}
+            </>
           ))}
         </div>
       </div>
