@@ -40,7 +40,6 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
 
   const onSubmitData = async (data) => {
     try {
-      console.log(data);
       const image = new File([data.logo[0]], "logo.png", {
         type: "image/png",
       });
@@ -56,6 +55,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
         ...data,
         imageUrl,
         locations,
+        benefits: data.benefits.map((benefit) => benefit.name),
       };
 
       onSubmit(companyData);
