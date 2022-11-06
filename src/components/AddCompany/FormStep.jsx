@@ -117,7 +117,7 @@ const FormStep = ({ register, errors, fields, append, remove }) => {
       </div>
       <div className="addCompany__form__group">
         <label htmlFor="benefits" className="form-label">
-          Beneficios
+          Requisitos
         </label>
         <button type="button" className="btn__add" onClick={addBenefit}>
           <FontAwesomeIcon icon={faPlus} />

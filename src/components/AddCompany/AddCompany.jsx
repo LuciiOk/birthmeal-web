@@ -19,6 +19,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
       webUrl: dataEdit?.webUrl,
       category: dataEdit?.category._id,
       description: dataEdit?.description,
+      benefits: dataEdit?.benefits.map((benefit) => ({ name: benefit })),
     },
     mode: "all",
   });
