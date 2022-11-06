@@ -60,8 +60,6 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
         });
         companyData.imageUrl = imageUrl;
       }
-
-
       onSubmit(companyData);
     } catch (error) {
       console.log(error);
