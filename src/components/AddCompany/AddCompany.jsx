@@ -1,8 +1,9 @@
 import React, { useEffect, useState, forwardRef } from "react";
-import { useForm } from "react-hook-form";
+import { useForm, useFieldArray } from "react-hook-form";
 import "./AddCompany.scss";
 import AxiosInstance from "../../utils/AxiosIntance";
 import LocationsStep from "./LocationStep";
+import FormStep from "./FormStep";
 
 const AddCompany = ({ onSubmit, dataEdit }) => {
   const [step, setStep] = useState(1);
@@ -11,6 +12,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
     handleSubmit,
     formState: { errors },
     getValues,
+    control,
   } = useForm({
     defaultValues: {
       name: dataEdit?.name,
@@ -20,6 +22,12 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
     },
     mode: "all",
   });
+
+  const { fields, append, remove } = useFieldArray({
+    control,
+    name: "benefits",
+  });
+
   const [locations, setLocations] = useState([]);
 
   const onNextStep = () => {
@@ -68,7 +76,12 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
 
   return (
     <form className="addCompany__form" onSubmit={handleSubmit(onSubmitData)}>
-      {step === 1 && <FormStep {...{ register, errors, onNextStep }} />}
+      {step === 1 && (
+        <FormStep
+          {...{ register, errors, onNextStep }}
+          {...{ fields, append, remove }}
+        />
+      )}
       {step === 2 && (
         <LocationsStep
           locations={locations}
@@ -97,112 +110,5 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
   );
 };
 
-const FormStep = ({ register, errors }) => {
-  const [categories, setCategories] = useState([]);
-
-  useEffect(() => {
-    const getCategories = async () => {
-      try {
-        const { data } = await AxiosInstance.get("/categories");
-        setCategories(data);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getCategories();
-  }, []);
-
-  if (!categories.length) {
-    return null;
-  }
-
-  return (
-    <React.Fragment>
-      <div className="addCompany__form__group">
-        <label htmlFor="name" className="form-label">
-          Nombre
-        </label>
-        <input
-          type="text"
-          name="name"
-          id="name"
-          className="form-input"
-          {...register("name", { required: true })}
-        />
-        {errors.name && (
-          <span className="form-error">El nombre es requerido</span>
-        )}
-      </div>
-      <div className="addCompany__form__group">
-        <label htmlFor="webUrl" className="form-label">
-          Url
-        </label>
-        <input
-          type="url"
-          name="webUrl"
-          id="webUrl"
-          className="form-input"
-          {...register("webUrl", { required: true, pattern: /^https?:\/\// })}
-        />
-        {errors.webUrl && (
-          <span className="form-error">La url es requerida</span>
-        )}
-        {errors.webUrl?.type === "pattern" && (
-          <span className="form-error">
-            La url debe empezar con http:// o https://
-          </span>
-        )}
-      </div>
-      <div className="addCompany__form__group">
-        <label htmlFor="category" className="form-label">
-          Categoría
-        </label>
-        <select
-          name="category"
-          id="category"
-          className="form-input"
-          {...register("category", { required: true })}
-        >
-          <option value="">Seleccione una categoría</option>
-          {categories.map((item) => (
-            <option key={item.id} value={item.id}>
-              {item.name}
-            </option>
-          ))}
-        </select>
-        {errors.category && (
-          <span className="form-error">La categoría es requerida</span>
-        )}
-      </div>
-      <div className="addCompany__form__group">
-        <label htmlFor="description" className="form-label">
-          Descripción
-        </label>
-        <textarea
-          name="description"
-          id="description"
-          className="form-input"
-          {...register("description", { required: true })}
-        />
-        {errors.description && (
-          <span className="form-error">La descripción es requerida</span>
-        )}
-      </div>
-      <div className="addCompany__form__group">
-        <label htmlFor="logo" className="form-label">
-          Logo
-        </label>
-        <input
-          type="file"
-          name="logo"
-          id="logo"
-          className="form-input"
-          {...register("logo")}
-        />
-      </div>
-      {errors.logo && <span className="form-error">El logo es requerido</span>}
-    </React.Fragment>
-  );
-};
 
 export default AddCompany;
