@@ -42,7 +42,6 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
     try {
       const companyData = {
         ...data,
-        imageUrl,
         locations,
         benefits: data.benefits.map((benefit) => benefit.name),
       };
