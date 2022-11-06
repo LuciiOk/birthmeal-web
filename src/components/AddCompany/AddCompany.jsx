@@ -39,6 +39,12 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
   };
 
   const onSubmitData = async (data) => {
+    const companyData = {
+      ...data,
+      imageUrl,
+      locations,
+      benefits: data.benefits.map((benefit) => benefit.name),
+    };
     try {
       if (data.logo[0]) {
         const image = new File([data.logo[0]], "logo.png", {
@@ -52,13 +58,9 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
             "Content-Type": "multipart/form-data",
           },
         });
+        companyData.imageUrl = imageUrl;
       }
-      const companyData = {
-        ...data,
-        imageUrl,
-        locations,
-        benefits: data.benefits.map((benefit) => benefit.name),
-      };
+
 
       onSubmit(companyData);
     } catch (error) {
