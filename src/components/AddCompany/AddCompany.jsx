@@ -40,17 +40,19 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
 
   const onSubmitData = async (data) => {
     try {
-      const image = new File([data.logo[0]], "logo.png", {
-        type: "image/png",
-      });
+      if (data.logo[0]) {
+        const image = new File([data.logo[0]], "logo.png", {
+          type: "image/png",
+        });
 
-      const formData = new FormData();
-      formData.append("file", image);
-      const { data: imageUrl } = await AxiosInstance.post("imgur", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+        const formData = new FormData();
+        formData.append("file", image);
+        const { data: imageUrl } = await AxiosInstance.post("imgur", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+      }
       const companyData = {
         ...data,
         imageUrl,
@@ -110,6 +112,5 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
     </form>
   );
 };
-
 
 export default AddCompany;
