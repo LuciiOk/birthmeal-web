@@ -116,6 +116,9 @@ const FormStep = ({ register, errors, fields, append, remove }) => {
           className="form-input"
           {...register("logo")}
         />
+        {errors.logo && (
+          <span className="form-error">El logo es requerido</span>
+        )}
       </div>
       <div className="addCompany__form__group">
         <label htmlFor="benefits" className="form-label">
@@ -151,7 +154,6 @@ const FormStep = ({ register, errors, fields, append, remove }) => {
           ))}
         </div>
       </div>
-      {errors.logo && <span className="form-error">El logo es requerido</span>}
     </React.Fragment>
   );
 };

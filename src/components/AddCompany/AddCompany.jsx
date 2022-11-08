@@ -12,6 +12,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
     handleSubmit,
     formState: { errors, isDirty, isValid },
     getValues,
+    setError,
     control,
   } = useForm({
     defaultValues: {
@@ -20,18 +21,10 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
       category: dataEdit?.category._id,
       description: dataEdit?.description,
       benefits: dataEdit?.benefits.map((benefit) => ({ name: benefit })),
-      logo: dataEdit?.logo,
     },
     mode: "all",
     reValidateMode: "onChange",
   });
-
-  useEffect(() => {
-    if (dataEdit?.logo) {
-      console.log(dataEdit?.logo);
-      register("logo", { required: false });
-    }
-  }, []);
 
   const { fields, append, remove } = useFieldArray({
     control,
@@ -41,6 +34,15 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
   const [locations, setLocations] = useState([]);
 
   const onNextStep = () => {
+    // validate if theres is a logo uploaded
+    console.log(getValues().logo.length)
+    if (getValues().logo.length === 0) {
+      setError("logo", {
+        type: "manual",
+        message: "Debe subir un logo",
+      });
+      return;
+    }
     if (isValid) {
       setStep(step + 1);
       return;
@@ -58,7 +60,8 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
         locations,
         benefits: data.benefits.map((benefit) => benefit.name),
       };
-      if (data.logo[0]) {
+
+      if (data.logo[0] && data.logo[0].name) {
         const image = new File([data.logo[0]], "logo.png", {
           type: "image/png",
         });
