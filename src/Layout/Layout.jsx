@@ -4,11 +4,13 @@ import AdminNavbar from "../components/AdminNavbar/AdminNavbar";
 import Sidebar from "../components/SideBar/Sidebar";
 
 const Layout = () => {
+  const [isOpen, setIsOpen] = React.useState(false);
+
   return (
     <>
-      <AdminNavbar />
+      <AdminNavbar isOpen={isOpen} setIsOpen={setIsOpen} />
       <div className="layout">
-        <Sidebar />
+        <Sidebar isOpen={isOpen} setIsOpen={setIsOpen} />
         <div className="layout__content">
           <Outlet />
         </div>
