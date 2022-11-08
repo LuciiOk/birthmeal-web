@@ -4,7 +4,7 @@ import AdminNavbar from "../components/AdminNavbar/AdminNavbar";
 import Sidebar from "../components/SideBar/Sidebar";
 
 const Layout = () => {
-  const [isOpen, setIsOpen] = React.useState(false);
+  const [isOpen, setIsOpen] = React.useState(true);
 
   return (
     <>
