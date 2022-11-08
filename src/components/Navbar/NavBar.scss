@@ -29,4 +29,20 @@
       }
     }
   }
+
+  .navbar__button {
+    background: #a9235f;
+    color: #fff;
+    border: none;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    font-size: 1.25rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+    &:hover {
+      background: #a9235f;
+      opacity: 0.8;
+    }
+  }
 }
