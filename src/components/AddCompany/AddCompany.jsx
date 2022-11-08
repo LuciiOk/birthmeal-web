@@ -26,6 +26,13 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
     reValidateMode: "onChange",
   });
 
+  useEffect(() => {
+    if (dataEdit?.logo) {
+      console.log(dataEdit?.logo);
+      register("logo", { required: false });
+    }
+  }, []);
+
   const { fields, append, remove } = useFieldArray({
     control,
     name: "benefits",

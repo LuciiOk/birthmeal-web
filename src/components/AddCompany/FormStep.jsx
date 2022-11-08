@@ -126,8 +126,8 @@ const FormStep = ({ register, errors, fields, append, remove }) => {
         </button>
         <div className="benefits__inputs__container">
           {fields.map((item, index) => (
-            <>
-              <div key={item.id} className="addCompany__form__group__benefit">
+            <div key={item.id} className="benefits__input__container">
+              <div className="addCompany__form__group__benefit">
                 <input
                   type="text"
                   name={`benefits[${index}].name`}
@@ -147,7 +147,7 @@ const FormStep = ({ register, errors, fields, append, remove }) => {
               {errors.benefits?.[index]?.name && (
                 <span className="form-error">El beneficio es requerido</span>
               )}
-            </>
+            </div>
           ))}
         </div>
       </div>
