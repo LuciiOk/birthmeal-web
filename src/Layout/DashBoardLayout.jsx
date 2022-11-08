@@ -48,7 +48,7 @@ const DashBoardLayout = ({ title, fields, urlPath }) => {
       <div className="CRUD__body">
         <Table data={data} head={fields} onDelete={onDelete} onEdit={onEdit} />
       </div>
-      <Modal open={open} onClose={onClose}>
+      <Modal open={open} onClose={onClose} className={"modal"}>
         <ModalC
           onClose={onClose}
           title={dataEdit ? "Editar" : "Agregar"}

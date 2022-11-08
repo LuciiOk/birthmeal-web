@@ -5,7 +5,7 @@ import "./Modal.scss";
 
 const Modal = forwardRef(({ title, onClose, children, width }, ref) => {
   return (
-    <div className="modal__container" style={{ width: width }}>
+    <div className="modal__container" style={{ width: width, overflow: "scroll" }}>
       <div className="modal__header">
         <h6 className="modal__title">{title}</h6>
         <button className="modal__close" onClick={onClose}>
