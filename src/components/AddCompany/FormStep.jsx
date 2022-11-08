@@ -24,7 +24,9 @@ const FormStep = ({ register, errors, fields, append, remove }) => {
       }
     };
     getCategories();
-    append({ name: "" });
+    if (fields.length === 0) {
+      addBenefit();
+    }
   }, []);
 
   if (!categories.length) {

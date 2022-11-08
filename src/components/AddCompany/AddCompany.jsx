@@ -10,7 +10,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
+    formState: { errors, isDirty, isValid },
     getValues,
     control,
   } = useForm({
@@ -20,8 +20,10 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
       category: dataEdit?.category._id,
       description: dataEdit?.description,
       benefits: dataEdit?.benefits.map((benefit) => ({ name: benefit })),
+      logo: dataEdit?.logo,
     },
     mode: "all",
+    reValidateMode: "onChange",
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -32,7 +34,10 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
   const [locations, setLocations] = useState([]);
 
   const onNextStep = () => {
-    setStep(step + 1);
+    if (isValid) {
+      setStep(step + 1);
+      return;
+    }
   };
 
   const onPrevStep = () => {
@@ -94,7 +99,12 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
       )}
       <div className="addCompany__form__actions">
         {step === 1 && (
-          <button className="btn__next" type="button" onClick={onNextStep}>
+          <button
+            className="btn__next"
+            type="button"
+            onClick={onNextStep}
+            disabled={!isDirty || !isValid}
+          >
             Siguiente
           </button>
         )}
@@ -104,7 +114,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
           </button>
         )}
         {step === 2 && (
-          <button className="btn__save" type="submit">
+          <button className="btn__save" type="submit" disabled={!isValid}>
             Guardar
           </button>
         )}
