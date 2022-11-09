@@ -16,10 +16,15 @@ const AddCategory = ({ onSubmit, dataEdit }) => {
     mode: "all",
   });
   const [icon, setIcon] = React.useState(dataEdit?.icon || "");
+  const [iconMessage, setIconMessage] = React.useState("");
   const [color, setColor] = React.useState(dataEdit?.color || "#000000");
   const [showColorPicker, setShowColorPicker] = React.useState(false);
 
   const send = (data) => {
+    if (!icon) {
+      setIconMessage("El icono es requerido");
+      return;
+    }
     if (!color || !icon) {
       return;
     }
@@ -65,6 +70,7 @@ const AddCategory = ({ onSubmit, dataEdit }) => {
           Icono
         </label>
         <IconPicker color={color} onChange={setIcon} iconName={icon} />
+        {iconMessage && <span className="form-error">{iconMessage}</span>}
       </div>
       <button className="addCategory__form__btn">
         {dataEdit ? "Actualizar" : "Agregar"}
