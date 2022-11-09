@@ -35,6 +35,9 @@ const AuthProvider = ({ children }) => {
     try {
       const localToken = localStorage.getItem("token");
       const localUser = localStorage.getItem("user");
+      if (!localToken) {
+        return;
+      }
       const { data } = await AxiosInstance.get("auth/verify-token");
       if (data) {
         setToken(localToken);
