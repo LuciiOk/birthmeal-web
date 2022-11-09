@@ -134,7 +134,7 @@ const FormStep = ({
             accept="image/*"
             name="logo"
             id="logo"
-            {...register("logo", { required: true })}
+            {...register("logo")}
           />
         </div>
         {errors.logo && (

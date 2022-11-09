@@ -36,14 +36,54 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
   const [locations, setLocations] = useState([]);
 
   const onNextStep = () => {
-    // validate if theres is a logo uploaded
-    if (getValues().logo.length === 0 && dataEdit?.imageUrl === undefined) {
+    const { name, webUrl, category, description, benefits, logo } = getValues();
+
+    // Validate form
+    if (!name) {
+      setError("name", {
+        type: "manual",
+        message: "El nombre es requerido",
+      });
+    }
+
+    if (!webUrl) {
+      setError("webUrl", {
+        type: "manual",
+        message: "La url es requerida",
+      });
+    }
+
+    if (!category) {
+      setError("category", {
+        type: "manual",
+        message: "La categoría es requerida",
+      });
+    }
+
+    if (!description) {
+      setError("description", {
+        type: "manual",
+        message: "La descripción es requerida",
+      });
+    }
+
+    benefits.forEach((benefit, index) => {
+      if (!benefit.name) {
+        setError(`benefits[${index}].name`, {
+          type: "manual",
+          message: "El beneficio es requerido",
+        });
+      }
+    });
+
+    if (logo.length === 0 && dataEdit?.imageUrl === undefined) {
       setError("logo", {
         type: "manual",
         message: "Debe subir un logo",
       });
       return;
     }
+
     if (isValid) {
       setStep(step + 1);
       return;
@@ -110,11 +150,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
       )}
       <div className="addCompany__form__actions">
         {step === 1 && (
-          <button
-            className="btn__next"
-            type="button"
-            onClick={onNextStep}
-          >
+          <button className="btn__next" type="button" onClick={onNextStep}>
             Siguiente
           </button>
         )}
