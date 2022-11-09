@@ -2,8 +2,17 @@ import React, { useState, useEffect } from "react";
 import AxiosInstance from "../../utils/AxiosIntance";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
+import logo from "../../assets/logo.png";
 
-const FormStep = ({ register, errors, fields, append, remove, watch }) => {
+const FormStep = ({
+  register,
+  errors,
+  fields,
+  append,
+  remove,
+  dataEdit,
+  watch,
+}) => {
   const [categories, setCategories] = useState([]);
   const addBenefit = () => {
     append({ name: "" });
@@ -33,13 +42,10 @@ const FormStep = ({ register, errors, fields, append, remove, watch }) => {
   }
 
   const convertToImage = (file) => {
-    if (file[0] && file[0].name) {
-      const [image] = file;
-      if (image) {
-        return URL.createObjectURL(image);
-      }
+    if (file && file.length > 0 && file[0].name) {
+      return URL.createObjectURL(file[0]);
     }
-    return file;
+    return dataEdit?.imageUrl || logo;
   };
 
   return (
@@ -120,7 +126,7 @@ const FormStep = ({ register, errors, fields, append, remove, watch }) => {
         </label>
         <div className="addCompany__form__group__logo">
           <img
-            src={convertToImage(watch("logo"))}
+            src={convertToImage(watch("logo")) || logo}
             referrerPolicy="no-referrer"
           />
           <input
