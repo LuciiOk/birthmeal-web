@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./Login.scss";
 import { AuthContext } from "../../contexts/AuthContext";
 import toast from "react-hot-toast";
