@@ -3,9 +3,8 @@ import AxiosInstance from "../../utils/AxiosIntance";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const FormStep = ({ register, errors, fields, append, remove, dataEdit }) => {
+const FormStep = ({ register, errors, fields, append, remove, watch }) => {
   const [categories, setCategories] = useState([]);
-
   const addBenefit = () => {
     append({ name: "" });
   };
@@ -32,6 +31,16 @@ const FormStep = ({ register, errors, fields, append, remove, dataEdit }) => {
   if (!categories.length) {
     return null;
   }
+
+  const convertToImage = (file) => {
+    if (file[0] && file[0].name) {
+      const [image] = file;
+      if (image) {
+        return URL.createObjectURL(image);
+      }
+    }
+    return file;
+  };
 
   return (
     <React.Fragment>
@@ -111,11 +120,12 @@ const FormStep = ({ register, errors, fields, append, remove, dataEdit }) => {
         </label>
         <div className="addCompany__form__group__logo">
           <img
-            src={fields[0]?.logo?.preview || dataEdit?.imageUrl}
-            referrerpolicy="no-referrer"
+            src={convertToImage(watch("logo"))}
+            referrerPolicy="no-referrer"
           />
           <input
             type="file"
+            accept="image/*"
             name="logo"
             id="logo"
             {...register("logo", { required: true })}

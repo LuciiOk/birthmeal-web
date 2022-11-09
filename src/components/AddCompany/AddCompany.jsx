@@ -10,8 +10,9 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isDirty, isValid },
+    formState: { errors, isValid },
     getValues,
+    watch,
     setError,
     control,
   } = useForm({
@@ -97,7 +98,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
       {step === 1 && (
         <FormStep
           {...{ register, errors, onNextStep }}
-          {...{ fields, append, remove, dataEdit }}
+          {...{ fields, append, remove, dataEdit, getValues, watch }}
         />
       )}
       {step === 2 && (
