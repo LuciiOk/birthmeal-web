@@ -3,7 +3,7 @@ import AxiosInstance from "../../utils/AxiosIntance";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPlus, faTimes } from "@fortawesome/free-solid-svg-icons";
 
-const FormStep = ({ register, errors, fields, append, remove }) => {
+const FormStep = ({ register, errors, fields, append, remove, dataEdit }) => {
   const [categories, setCategories] = useState([]);
 
   const addBenefit = () => {
@@ -109,13 +109,18 @@ const FormStep = ({ register, errors, fields, append, remove }) => {
         <label htmlFor="logo" className="form-label">
           Logo
         </label>
-        <input
-          type="file"
-          name="logo"
-          id="logo"
-          className="form-input"
-          {...register("logo")}
-        />
+        <div className="addCompany__form__group__logo">
+          <img
+            src={fields[0]?.logo?.preview || dataEdit?.imageUrl}
+            referrerpolicy="no-referrer"
+          />
+          <input
+            type="file"
+            name="logo"
+            id="logo"
+            {...register("logo", { required: true })}
+          />
+        </div>
         {errors.logo && (
           <span className="form-error">El logo es requerido</span>
         )}

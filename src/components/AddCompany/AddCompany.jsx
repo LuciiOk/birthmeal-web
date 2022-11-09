@@ -97,7 +97,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
       {step === 1 && (
         <FormStep
           {...{ register, errors, onNextStep }}
-          {...{ fields, append, remove }}
+          {...{ fields, append, remove, dataEdit }}
         />
       )}
       {step === 2 && (
