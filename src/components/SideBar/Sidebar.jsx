@@ -26,13 +26,13 @@ const Sidebar = ({ isOpen, setIsOpen }) => {
         <li>
           <Link to="/admin/companies" className="link">
             <FontAwesomeIcon icon={faBuilding} />
-            <span>Companies</span>
+            <span>Establecimientos</span>
           </Link>
         </li>
         <li>
           <Link to="/admin/categories" className="link">
             <FontAwesomeIcon icon={faBoxOpen} />
-            <span>Categories</span>
+            <span>Categorías</span>
           </Link>
         </li>
       </ul>
