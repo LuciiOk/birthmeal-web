@@ -21,6 +21,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
       category: dataEdit?.category._id,
       description: dataEdit?.description,
       benefits: dataEdit?.benefits.map((benefit) => ({ name: benefit })),
+      logo: dataEdit?.imageUrl,
     },
     mode: "all",
     reValidateMode: "onChange",
@@ -35,8 +36,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
 
   const onNextStep = () => {
     // validate if theres is a logo uploaded
-    console.log(getValues().logo.length)
-    if (getValues().logo.length === 0) {
+    if (getValues().logo.length === 0 && dataEdit?.imageUrl === undefined) {
       setError("logo", {
         type: "manual",
         message: "Debe subir un logo",
@@ -113,7 +113,6 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
             className="btn__next"
             type="button"
             onClick={onNextStep}
-            disabled={!isDirty || !isValid}
           >
             Siguiente
           </button>
@@ -124,7 +123,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
           </button>
         )}
         {step === 2 && (
-          <button className="btn__save" type="submit" disabled={!isValid}>
+          <button className="btn__save" type="submit">
             {dataEdit ? "Actualizar" : "Guardar"}
           </button>
         )}
