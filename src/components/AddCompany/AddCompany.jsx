@@ -125,7 +125,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
         )}
         {step === 2 && (
           <button className="btn__save" type="submit" disabled={!isValid}>
-            Guardar
+            {dataEdit ? "Actualizar" : "Guardar"}
           </button>
         )}
       </div>

@@ -67,7 +67,7 @@ const AddCategory = ({ onSubmit, dataEdit }) => {
         <IconPicker color={color} onChange={setIcon} iconName={icon} />
       </div>
       <button className="addCategory__form__btn">
-        Agregar
+        {dataEdit ? "Actualizar" : "Agregar"}
       </button>
     </form>
   );
