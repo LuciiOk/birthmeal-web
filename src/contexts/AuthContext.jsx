@@ -7,6 +7,7 @@ const AuthProvider = ({ children }) => {
   const [token, setToken] = React.useState(null);
   const [isAuth, setIsAuth] = React.useState(false);
   const [user, setUser] = React.useState(null);
+  const [isLoading, setIsLoading] = React.useState(true);
 
   const login = async (email, password) => {
     const userData = {
@@ -49,6 +50,8 @@ const AuthProvider = ({ children }) => {
     } catch (error) {
       logout();
       console.log(error);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -64,6 +67,7 @@ const AuthProvider = ({ children }) => {
         token,
         login,
         logout,
+        isLoading,
       }}
     >
       {children}

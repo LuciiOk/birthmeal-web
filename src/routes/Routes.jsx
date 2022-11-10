@@ -9,16 +9,29 @@ import Layout from "../Layout/Layout";
 import Categories from "../pages/Categories/Categories";
 
 const RoutesC = () => {
-  const { isAuth } = useContext(AuthContext);
+  const { isAuth, isLoading } = useContext(AuthContext);
+
+  if (isLoading) {
+    return (
+      <div
+        style={{
+          height: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <h1>Loading...</h1>
+      </div>
+    );
+  }
 
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
         {!isAuth && <Route path="/login" element={<Login />} />}
-        {isAuth && (
-          <Route path="/login" element={<Navigate to="/admin" />} />
-        )}
+        {isAuth && <Route path="/login" element={<Navigate to="/admin" />} />}
         <Route path="*" element={<NotFound />} />
         {isAuth && (
           <Route path="admin/" element={<Layout />}>
@@ -28,7 +41,9 @@ const RoutesC = () => {
             <Route path="*" element={<NotFound />} />
           </Route>
         )}
-        {!isAuth && <Route path="/admin/*" element={<Navigate to="/login" />} />}
+        {!isAuth && (
+          <Route path="/admin/*" element={<Navigate to="/login" />} />
+        )}
       </Routes>
     </BrowserRouter>
   );
