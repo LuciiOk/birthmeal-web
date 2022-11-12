@@ -52,7 +52,7 @@ const DashBoardLayout = ({ title, fields, urlPath }) => {
         <ModalC
           onClose={onClose}
           title={dataEdit ? "Editar" : "Agregar"}
-          width={urlPath === "companies" ? "600px" : "400px"}
+          width={urlPath === "companies" ? "700px" : "400px"}
         >
           {urlPath === "categories" && (
             <AddCategory onSubmit={onSubmit} dataEdit={dataEdit} />

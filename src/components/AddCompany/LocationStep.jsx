@@ -3,6 +3,7 @@ import { toast } from "react-hot-toast";
 import AxiosInstance from "../../utils/AxiosIntance";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTimes } from "@fortawesome/free-solid-svg-icons";
+import GoogleAutocomplete from "../GoogleAutocomplete/GoogleAutocomplete";
 
 const LocationsStep = ({ name = "starbucks", locations, setLocations }) => {
   const getLocations = async () => {
@@ -24,17 +25,35 @@ const LocationsStep = ({ name = "starbucks", locations, setLocations }) => {
     setLocations(newLocations);
   };
 
+  const onAddLocation = (location) => {
+    // Check if location already exists with place_id
+    const locationExists = locations.some(
+      (item) => item.place_id === location.place_id
+    );
+
+    if (locationExists) {
+      toast.error("La ubicación ya existe");
+      return;
+    }
+
+    const newLocations = [...locations, location];
+    setLocations(newLocations);
+  };
+
   return (
     <div className="locations__list">
-      {locations.length === 0 && (
-        <button
-          className="btn__getLocations"
-          type="button"
-          onClick={getLocations}
-        >
-          Obtener ubicaciones {name}
-        </button>
-      )}
+      <div className="locations__list__search">
+        {locations.length !== 0 && (
+          <button
+            className="btn__getLocations"
+            type="button"
+            onClick={getLocations}
+          >
+            Obtener ubicaciones {name}
+          </button>
+        )}
+        <GoogleAutocomplete onPlaceChanged={onAddLocation} />
+      </div>
       <ul className="locations__list__items">
         {locations.length === 0 && (
           <>
