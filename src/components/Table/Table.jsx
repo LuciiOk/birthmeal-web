@@ -6,7 +6,8 @@ import * as Icons from "@fortawesome/free-solid-svg-icons";
 const Table = ({ data, head, onDelete, onEdit }) => {
   const removeProtocol = (url) => {
     if (url) {
-      return url.replace(/(^\w+:|^)\/\//, "").replace("www.", "");
+      // Remove protocol from url (http://, https://) and www. and /
+      return url.replace(/(^\w+:|^)\/\//, "").replace("www.", "").replace("/", "");
     }
   };
 
