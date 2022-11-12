@@ -8,6 +8,7 @@ function Companies() {
     { name: "Nombre", key: "name" },
     { name: "Website", key: "webUrl" },
     { name: "Categoria", key: "category", key2: "name" },
+    { name: "Rating", key: "rating" },
   ];
 
   return (

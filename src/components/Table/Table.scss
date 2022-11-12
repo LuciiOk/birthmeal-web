@@ -35,6 +35,11 @@
 
     td {
       text-align: center;
+
+      a {
+        color: #009879;
+        text-decoration: none;
+      }
     }
     &:nth-of-type(even) {
       background-color: #f3f3f3;

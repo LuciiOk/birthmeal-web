@@ -4,6 +4,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as Icons from "@fortawesome/free-solid-svg-icons";
 
 const Table = ({ data, head, onDelete, onEdit }) => {
+  const removeProtocol = (url) => {
+    if (url) {
+      return url.replace(/(^\w+:|^)\/\//, "").replace("www.", "");
+    }
+  };
+
   return (
     <table className="table">
       <thead>
@@ -34,6 +40,12 @@ const Table = ({ data, head, onDelete, onEdit }) => {
                     icon={Icons[item[field.key]]}
                     color={item.color}
                   />
+                </td>
+              ) : field.key === "webUrl" ? (
+                <td key={field.key}>
+                  <a href={item[field.key]} target="_blank">
+                    {removeProtocol(item[field.key])}
+                  </a>
                 </td>
               ) : (
                 <td key={field.key}>
