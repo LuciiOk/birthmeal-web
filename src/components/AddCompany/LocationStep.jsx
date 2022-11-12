@@ -13,6 +13,22 @@ const LocationsStep = ({ name = "starbucks", locations, setLocations }) => {
         return;
       }
       const { data } = await AxiosInstance.get(`google-maps/${name}`);
+
+      if (data.length === 0) {
+        toast.error("No se encontraron resultados");
+        return;
+      }
+
+      // if theres locations already, only add the new ones
+      if (locations.length > 0) {
+        const newLocations = data.filter(
+          (location) =>
+            !locations.some((loc) => loc.place_id === location.place_id)
+        );
+        setLocations([...locations, ...newLocations]);
+        return;
+      }
+
       setLocations(data);
     } catch (error) {
       console.log(error);
@@ -43,15 +59,13 @@ const LocationsStep = ({ name = "starbucks", locations, setLocations }) => {
   return (
     <div className="locations__list">
       <div className="locations__list__search">
-        {locations.length !== 0 && (
-          <button
-            className="btn__getLocations"
-            type="button"
-            onClick={getLocations}
-          >
-            Obtener ubicaciones {name}
-          </button>
-        )}
+        <button
+          className="btn__getLocations"
+          type="button"
+          onClick={getLocations}
+        >
+          Obtener ubicaciones {name}
+        </button>
         <GoogleAutocomplete onPlaceChanged={onAddLocation} />
       </div>
       <ul className="locations__list__items">
