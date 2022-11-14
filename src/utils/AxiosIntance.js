@@ -36,6 +36,12 @@ AxiosInstance.interceptors.response.use(
       response.data.id = response.data._id;
       delete response.data._id;
     }
+    if (response.data.data) {
+      response.data.data.map((item) => {
+        item.id = item._id;
+        delete item._id;
+      });
+    }
     return response;
   },
   (error) => {

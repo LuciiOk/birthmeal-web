@@ -54,7 +54,7 @@ const useCRUD = (urlPath) => {
   const getDataByPage = useCallback(async () => {
     try {
       const { data: responseData } = await AxiosInstance.get(
-        `${urlPath}?page=${page}&limit=9`
+        `${urlPath}/paginate?page=${page}&limit=9`
       );
       console.log(responseData);
       setData(responseData.data);

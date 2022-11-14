@@ -15,7 +15,7 @@ function Companies() {
     <DashBoardLayout
       title="Establecimientos"
       fields={fields}
-      urlPath="companies/paginate"
+      urlPath="companies"
     />
   );
 }

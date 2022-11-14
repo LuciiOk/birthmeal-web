@@ -13,7 +13,7 @@ const Categories = () => {
       <DashBoardLayout
         title="Categorias"
         fields={fields}
-        urlPath="categories/paginate"
+        urlPath="categories"
       />
     </div>
   );
