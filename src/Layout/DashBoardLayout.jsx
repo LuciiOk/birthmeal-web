@@ -6,9 +6,20 @@ import AddCompany from "../components/AddCompany/AddCompany";
 import { Modal } from "@mui/material";
 import ModalC from "../components/Modal/Modal";
 import ConfirmModal from "../components/ConfirmModal/ConfirmModal";
+import { Pagination } from "@mui/material";
 
 const DashBoardLayout = ({ title, fields, urlPath }) => {
-  const { data, addData, deleteData, updateData } = useCRUD(urlPath);
+  const { 
+    data, 
+    addData, 
+    deleteData, 
+    updateData, 
+    page, 
+    setPage, 
+    total,
+    totalPerPage,
+    totalPages,
+  } =useCRUD(urlPath);
   const [open, setOpen] = useState(false);
   const [dataEdit, setDataEdit] = useState(null);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
@@ -37,6 +48,10 @@ const DashBoardLayout = ({ title, fields, urlPath }) => {
     setDataEdit(data.find((item) => item.id === id));
   };
 
+  const handleChange = (event, value) => {
+    setPage(value);
+  };
+
   return (
     <div className="container">
       <div className="CRUD__header">
@@ -47,6 +62,7 @@ const DashBoardLayout = ({ title, fields, urlPath }) => {
       </div>
       <div className="CRUD__body">
         <Table data={data} head={fields} onDelete={onDelete} onEdit={onEdit} />
+        <Pagination onChange={handleChange} page={page} count={totalPages} />
       </div>
       <Modal open={open} onClose={onClose} className={"modal"}>
         <ModalC

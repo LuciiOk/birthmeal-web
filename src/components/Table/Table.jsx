@@ -7,10 +7,12 @@ const Table = ({ data, head, onDelete, onEdit }) => {
   const removeProtocol = (url) => {
     if (url) {
       // Remove protocol from url (http://, https://) and www. and /
-      return url.replace(/(^\w+:|^)\/\//, "").replace("www.", "").replace("/", "");
+      return url
+        .replace(/(^\w+:|^)\/\//, "")
+        .replace("www.", "")
+        .replace("/", "");
     }
   };
-
   return (
     <table className="table">
       <thead>

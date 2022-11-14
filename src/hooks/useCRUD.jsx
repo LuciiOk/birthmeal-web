@@ -1,19 +1,14 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { toast } from "react-hot-toast";
 import AxiosInstance from "../utils/AxiosIntance";
 
 const useCRUD = (urlPath) => {
   const [data, setData] = useState([]);
-
-  const getData = async () => {
-    try {
-      const { data: responseData } = await AxiosInstance.get(urlPath);
-      setData(responseData);
-    } catch (error) {
-      console.log(error);
-      toast.error("Error al obtener datos");
-    }
-  };
+  const [loading, setLoading] = useState(false);
+  const [page, setPage] = useState(1);
+  const [total, setTotal] = useState(0);
+  const [totalPerPage, setTotalPerPage] = useState(0);
+  const [totalPages, setTotalPages] = useState(0);
 
   const addData = async (newData) => {
     try {
@@ -56,11 +51,39 @@ const useCRUD = (urlPath) => {
     }
   };
 
-  useEffect(() => {
-    getData();
-  }, []);
+  const getDataByPage = useCallback(async () => {
+    try {
+      const { data: responseData } = await AxiosInstance.get(
+        `${urlPath}?page=${page}&limit=9`
+      );
+      console.log(responseData);
+      setData(responseData.data);
+      setTotalPages(responseData.totalPages);
+      setTotalPerPage(responseData.limit);
+      setTotal(responseData.total);
+      setPage(Number(responseData.page));
+    } catch (error) {
+      console.log(error);
+      toast.error("Error al obtener datos");
+    }
+  }, [page, urlPath]);
 
-  return { data, addData, deleteData, updateData };
+  useEffect(() => {
+    getDataByPage();
+  }, [getDataByPage]);
+
+  return {
+    data,
+    addData,
+    deleteData,
+    updateData,
+    loading,
+    page,
+    totalPages,
+    setPage,
+    total,
+    totalPerPage,
+  };
 };
 
 export default useCRUD;
