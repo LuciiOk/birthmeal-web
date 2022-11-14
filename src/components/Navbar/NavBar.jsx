@@ -12,7 +12,7 @@ const NavBar = () => {
   return (
     <nav className="navbar">
       <ul className="navbar__list">
-        <li className="navbar__item">
+        {/* <li className="navbar__item">
           <Link to="#about" className="navbar__link">
             Sobre nosotros
           </Link>
@@ -21,7 +21,7 @@ const NavBar = () => {
           <Link to="#contact" className="navbar__link">
             Contacto
           </Link>
-        </li>
+        </li> */}
       </ul>
       {isAuth && (
         <button className="navbar__button" onClick={() => navigate("/admin")}>
