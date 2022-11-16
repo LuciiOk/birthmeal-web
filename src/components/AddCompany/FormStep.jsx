@@ -62,7 +62,7 @@ const FormStep = ({
           {...register("name", { required: true })}
         />
         {errors.name && (
-          <span className="form-error">El nombre es requerido</span>
+          <span className="form-error">{errors.name.message}</span>
         )}
       </div>
       <div className="addCompany__form__group">
@@ -77,12 +77,7 @@ const FormStep = ({
           {...register("webUrl", { required: true, pattern: /^https?:\/\// })}
         />
         {errors.webUrl && (
-          <span className="form-error">La url es requerida</span>
-        )}
-        {errors.webUrl?.type === "pattern" && (
-          <span className="form-error">
-            La url debe empezar con http:// o https://
-          </span>
+          <span className="form-error">{errors.webUrl.message}</span>
         )}
       </div>
       <div className="addCompany__form__group">
@@ -103,7 +98,7 @@ const FormStep = ({
           ))}
         </select>
         {errors.category && (
-          <span className="form-error">La categoría es requerida</span>
+          <span className="form-error">{errors.category.message}</span>
         )}
       </div>
       <div className="addCompany__form__group">
@@ -117,7 +112,7 @@ const FormStep = ({
           {...register("description", { required: true })}
         />
         {errors.description && (
-          <span className="form-error">La descripción es requerida</span>
+          <span className="form-error">{errors.description.message}</span>
         )}
       </div>
       <div className="addCompany__form__group">
@@ -138,7 +133,7 @@ const FormStep = ({
           />
         </div>
         {errors.logo && (
-          <span className="form-error">El logo es requerido</span>
+          <span className="form-error">{errors.logo.message}</span>
         )}
       </div>
       <div className="addCompany__form__group">
@@ -168,11 +163,16 @@ const FormStep = ({
                   <FontAwesomeIcon icon={faTimes} />
                 </button>
               </div>
-              {errors.benefits?.[index]?.name && (
-                <span className="form-error">El beneficio es requerido</span>
+              {errors.benefits && (
+                <span className="form-error">
+                  {errors.benefits[index]?.name?.message}
+                </span>
               )}
             </div>
           ))}
+          {errors.benefits && (
+            <span className="form-error">{errors.benefits.message}</span>
+          )}
         </div>
       </div>
     </React.Fragment>

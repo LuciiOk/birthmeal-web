@@ -4,6 +4,8 @@ import "./AddCompany.scss";
 import AxiosInstance from "../../utils/AxiosIntance";
 import LocationsStep from "./LocationStep";
 import FormStep from "./FormStep";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { AddCompanySchema } from "../../utils/ValidationsSchemas";
 
 const AddCompany = ({ onSubmit, dataEdit }) => {
   const [step, setStep] = useState(1);
@@ -16,6 +18,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
     setError,
     control,
   } = useForm({
+    resolver: yupResolver(AddCompanySchema),
     defaultValues: {
       name: dataEdit?.name,
       webUrl: dataEdit?.webUrl,
@@ -25,7 +28,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
       logo: dataEdit?.imageUrl,
     },
     mode: "all",
-    reValidateMode: "onChange",
+    reValidateMode: "all",
   });
 
   const { fields, append, remove } = useFieldArray({
@@ -36,54 +39,6 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
   const [locations, setLocations] = useState([]);
 
   const onNextStep = () => {
-    const { name, webUrl, category, description, benefits, logo } = getValues();
-
-    // Validate form
-    if (!name) {
-      setError("name", {
-        type: "manual",
-        message: "El nombre es requerido",
-      });
-    }
-
-    if (!webUrl) {
-      setError("webUrl", {
-        type: "manual",
-        message: "La url es requerida",
-      });
-    }
-
-    if (!category) {
-      setError("category", {
-        type: "manual",
-        message: "La categoría es requerida",
-      });
-    }
-
-    if (!description) {
-      setError("description", {
-        type: "manual",
-        message: "La descripción es requerida",
-      });
-    }
-
-    benefits.forEach((benefit, index) => {
-      if (!benefit.name) {
-        setError(`benefits[${index}].name`, {
-          type: "manual",
-          message: "El beneficio es requerido",
-        });
-      }
-    });
-
-    if (logo.length === 0 && dataEdit?.imageUrl === undefined) {
-      setError("logo", {
-        type: "manual",
-        message: "Debe subir un logo",
-      });
-      return;
-    }
-
     if (isValid) {
       setStep(step + 1);
       return;
