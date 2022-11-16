@@ -44,3 +44,14 @@ export const AddCompanySchema = Yup.object().shape({
     )
     .min(1, "La empresa debe tener al menos un beneficio"),
 });
+
+export const AddCategorySchema = Yup.object().shape({
+  name: Yup.string().required("El nombre de la categoría es requerido"),
+  icon: Yup.string().required("El icono de la categoría es requerido"),
+  color: Yup.string()
+    .required("El color de la categoría es requerido")
+    .matches(
+      /^#([A-Fa-f0-9]{6}|[A-Fa-f0-9]{3})$/,
+      "El color de la categoría no es válido"
+    ),
+});
