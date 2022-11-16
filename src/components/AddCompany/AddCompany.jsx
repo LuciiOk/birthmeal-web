@@ -14,8 +14,8 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
     handleSubmit,
     formState: { errors, isValid },
     getValues,
-    watch,
     setError,
+    watch,
     control,
   } = useForm({
     resolver: yupResolver(AddCompanySchema),
@@ -105,7 +105,7 @@ const AddCompany = ({ onSubmit, dataEdit }) => {
       )}
       <div className="addCompany__form__actions">
         {step === 1 && (
-          <button className="btn__next" type="button" onClick={onNextStep}>
+          <button className="btn__next" type="button" onClick={handleSubmit(onNextStep)}>
             Siguiente
           </button>
         )}

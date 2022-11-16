@@ -19,21 +19,19 @@ export const AddCompanySchema = Yup.object().shape({
       "fileFormat",
       "El logo de la empresa debe ser un archivo PNG o JPEG",
       (value) => {
-        const [file] = value;
-        if (file) {
-          const { type } = file;
-          return type === "image/png" || type === "image/jpeg";
+        if (value) {
+          const [file] = value;
+          return file?.type === "image/png" || file?.type === "image/jpeg";
         }
-        return true;
+        return false;
       }
     )
     .test("fileSize", "El logo de la empresa es muy pesado", (value) => {
-      const [file] = value;
-      if (file) {
-        const { size } = file;
-        return size <= 1000000;
+      if (value) {
+        const [file] = value;
+        return file?.size <= 2000000;
       }
-      return true;
+      return false;
     }),
   // benefits its and array of objects, verify if the array is empty and verify each object
   benefits: Yup.array()

@@ -32,9 +32,6 @@ const FormStep = ({
       }
     };
     getCategories();
-    if (fields.length === 0) {
-      addBenefit();
-    }
   }, []);
 
   if (!categories.length) {
@@ -126,7 +123,7 @@ const FormStep = ({
           />
           <input
             type="file"
-            accept="image/*"
+            accept="image/png, image/jpeg"
             name="logo"
             id="logo"
             {...register("logo")}
