@@ -18,7 +18,7 @@ class BoundaryError extends React.Component {
   render() {
     if (this.state.hasError) {
       return (
-        <div className="container main__container">
+        <div className="container__error main__container">
           <h2>
             Oh, no!, ha ocurrido un error.<br /> Por favor, vuelva a intentarlo más
             tarde.
