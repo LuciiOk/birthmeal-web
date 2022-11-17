@@ -14,12 +14,18 @@ export const AddCompanySchema = Yup.object().shape({
     "La descripción de la empresa es requerida"
   ),
   logo: Yup.mixed()
-    .required("El logo de la empresa es requerido")
+    .test("required", "El logo de la empresa es requerido", (value) => {
+      return value && value.length > 0;
+    })
     .test(
       "fileFormat",
       "El logo de la empresa debe ser un archivo PNG o JPEG",
       (value) => {
         if (value) {
+          if (typeof value === "string" && value.startsWith("http")) {
+            return true;
+          }
+
           const [file] = value;
           return file?.type === "image/png" || file?.type === "image/jpeg";
         }
@@ -28,6 +34,9 @@ export const AddCompanySchema = Yup.object().shape({
     )
     .test("fileSize", "El logo de la empresa es muy pesado", (value) => {
       if (value) {
+        if (typeof value === "string" && value.startsWith("http")) {
+          return true;
+        }
         const [file] = value;
         return file?.size <= 2000000;
       }
