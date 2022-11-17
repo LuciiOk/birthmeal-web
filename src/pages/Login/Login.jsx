@@ -5,13 +5,15 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { LoginSchema } from "../../utils/ValidationsSchemas";
 
 const Login = () => {
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ mode: "all" });
+  } = useForm({ mode: "all", resolver: yupResolver(LoginSchema) });
   const navigate = useNavigate();
   const { login } = useContext(AuthContext);
 
@@ -35,13 +37,7 @@ const Login = () => {
             name="email"
             type="email"
             placeholder="Email"
-            {...register("email", {
-              required: "El email es requerido",
-              pattern: {
-                value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i,
-                message: "El email no es válido",
-              },
-            })}
+            {...register("email")}
           />
           {errors.email && (
             <span className="error">{errors.email.message}</span>
@@ -49,9 +45,7 @@ const Login = () => {
           <input
             type="password"
             placeholder="Password"
-            {...register("password", {
-              required: "La contraseña es requerida",
-            })}
+            {...register("password")}
           />
           {errors.password && (
             <span className="error">{errors.password.message}</span>

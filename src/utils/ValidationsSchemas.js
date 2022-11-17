@@ -62,3 +62,10 @@ export const AddCategorySchema = Yup.object().shape({
       "El color de la categoría no es válido"
     ),
 });
+
+export const LoginSchema = Yup.object().shape({
+  email: Yup.string()
+    .email("El email no es válidoS")
+    .required("El email es requerido"),
+  password: Yup.string().required("La contraseña es requerida"),
+});
