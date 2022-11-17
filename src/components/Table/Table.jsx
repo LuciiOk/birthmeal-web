@@ -24,7 +24,7 @@ const Table = ({ data, head, onDelete, onEdit }) => {
         </tr>
       </thead>
       <tbody>
-        {data.map((item, index) => (
+        {data.length > 0 && data.map((item, index) => (
           <tr key={index}>
             {head.map((field) =>
               field.key === "color" ? (
@@ -66,6 +66,11 @@ const Table = ({ data, head, onDelete, onEdit }) => {
             </td>
           </tr>
         ))}
+        {data.length === 0 && (
+          <tr>
+            <td colSpan={head.length + 1}>No hay datos</td>
+          </tr>
+        )}
       </tbody>
     </table>
   );
