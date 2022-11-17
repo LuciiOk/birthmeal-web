@@ -8,6 +8,9 @@ const NotFound = () => {
       <img src={img404} alt="404" className="notfound__img" />
       <h2>404</h2>
       <h3>Lo sentimos, la página que buscas no existe.</h3>
+      <button className="btn__back" onClick={() => window.history.back()}>
+        Volver
+      </button>
     </div>
   );
 };
