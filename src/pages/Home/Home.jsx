@@ -5,6 +5,7 @@ import logo from "../../assets/logo.png";
 import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
+  throw new Error("Error en Home");
   return (
     <>
       <div className="waves">

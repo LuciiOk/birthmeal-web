@@ -1,5 +1,6 @@
 import React from "react";
 import './ErrorBoundary.scss';
+import image from '../assets/images/Burger-404.png';
 
 class BoundaryError extends React.Component {
   constructor(props) {
@@ -19,6 +20,7 @@ class BoundaryError extends React.Component {
     if (this.state.hasError) {
       return (
         <div className="container__error main__container">
+          <img src={image} alt="error" className="error__image" />
           <h2>
             Oh, no!, ha ocurrido un error.<br /> Por favor, vuelva a intentarlo más
             tarde.
