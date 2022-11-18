@@ -7,7 +7,7 @@ import Footer from "../../components/Footer/Footer";
 const Home = () => {
   const onDownload = () => {
     window.open(
-      "https://drive.google.com/uc?export=download&id=1TQ2bxvYOO6lqhkDEHVdQf9WqZZFjLnP1",
+      "https://drive.google.com/uc?export=download&id=1bI8U3-1bR-o7ac8BpY2RHhLaB5cFMBL0",
       "_blank"
     );
   };
