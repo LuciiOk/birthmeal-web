@@ -5,6 +5,13 @@ import logo from "../../assets/logo.png";
 import Footer from "../../components/Footer/Footer";
 
 const Home = () => {
+  const onDownload = () => {
+    window.open(
+      "https://drive.google.com/uc?export=download&id=1TQ2bxvYOO6lqhkDEHVdQf9WqZZFjLnP1",
+      "_blank"
+    );
+  };
+
   return (
     <>
       <div className="waves">
@@ -23,7 +30,9 @@ const Home = () => {
             Encuentra los <strong>mejores</strong> lugares donde disfrutar tu
             cumpleaños con <strong>Birthmeal</strong>
           </h1>
-          <button className="content__button">Descarga la app!</button>
+          <button className="content__button" onClick={() => onDownload()}>
+            Descarga la app!
+          </button>
         </div>
         <div className="content__image">
           <img src={logo} />
